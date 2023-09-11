@@ -20,7 +20,7 @@ require("./config")(app);
 
 // default value for title local
 const capitalize = require("./utils/capitalize");
-const projectName = "to-do-1";
+const projectName = "m2-project";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
