@@ -1,6 +1,7 @@
 {
-  "name": "to-do-1",
+  "name": "m2-project",
   "version": "0.0.0",
+  
   "private": true,
   "scripts": {
     "start": "node server.js",
@@ -20,9 +21,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  },
-  "description": "",
-  "main": "app.js",
-  "author": "",
-  "license": "ISC"
+  }
 }
