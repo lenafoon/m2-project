@@ -33,6 +33,8 @@ const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter); 
 
 
+
+
 //ERRORS
 require("./error-handling")(app);
 
