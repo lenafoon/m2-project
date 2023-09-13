@@ -12,6 +12,17 @@
               <input type="text" id="title" name="title" class="form-control" required>
             </div>
             <div class="mb-3">
+              <label for="use-checklist" class="form-label">Use Checklist:</label>
+              <input type="checkbox" id="use-checklist" name="use-checklist">
+            </div>
+            <div class="mb-3" id="checklist-container" style="display: none;">
+              <label for="checklist" class="form-label">Checklist:</label>
+              <div id="checklist-items">
+                <!-- Checklist items will be added here -->
+              </div>
+              <button type="button" id="add-checklist-item" class="btn btn-sm btn-primary">Add Item</button>
+            </div>
+            <div class="mb-3" id="description-container">
               <label for="description" class="form-label">Description:</label>
               <textarea id="description" name="description" class="form-control" rows="4"></textarea>
             </div>
@@ -29,7 +40,14 @@
             </div>
             <div class="mb-3">
               <label for="category" class="form-label">Category Tag:</label>
-              <input type="text" id="category" name="category" class="form-control">
+              <select id="category" name="category" class="form-select">
+                <option value="Personal">Personal</option>
+                <option value="Health">Health</option>
+                <option value="Work">Work</option>
+                <option value="Home">Home</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
             <button type="submit" class="btn btn-primary">Create Task</button>
           </form>
@@ -39,3 +57,29 @@
   </div>
 </div>
 
+<script>
+  const useChecklistCheckbox = document.getElementById("use-checklist");
+  const checklistContainer = document.getElementById("checklist-container");
+  const descriptionContainer = document.getElementById("description-container");
+  const addChecklistItemButton = document.getElementById("add-checklist-item");
+  const checklistItemsContainer = document.getElementById("checklist-items");
+
+  useChecklistCheckbox.addEventListener("change", function () {
+    if (useChecklistCheckbox.checked) {
+      checklistContainer.style.display = "block";
+      descriptionContainer.style.display = "none";
+    } else {
+      checklistContainer.style.display = "none";
+      descriptionContainer.style.display = "block";
+    }
+  });
+
+  addChecklistItemButton.addEventListener("click", function () {
+    const newItem = document.createElement("input");
+    newItem.type = "text";
+    newItem.name = "checklist-item";
+    newItem.className = "form-control mb-2";
+    newItem.placeholder = "Checklist Item";
+    checklistItemsContainer.appendChild(newItem);
+  });
+</script>
