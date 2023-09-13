@@ -11,6 +11,8 @@ const app = express();
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
+app.use(express.static('public'));
+
 require("./config")(app);
 require('./config/session.config')(app);
 
@@ -26,16 +28,16 @@ app.use("/", indexRoutes);
 
 
 const tasksRoute = require('./routes/tasks.routes');
-app.use('/', tasksRoute);
+app.use('/', tasksRoute);//?
 
 
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter); 
 
+const catRoutes = require("./routes/categories.routes");
+app.use('/', catRoutes);
 
 
-
-//ERRORS
 require("./error-handling")(app);
 
 module.exports = app;

@@ -1,24 +1,31 @@
-<div id="form">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
- 
-    <label> Username
-      <input type="text" name="username" placeholder="ironhacker" />
-    </label>
- 
-    <label> Email
-      <input type="email" name="email" placeholder="rockstar@ironhack.com" />
-    </label>
- 
-    <label> Password
-      <input type="password" name="password" placeholder="********" />
-    </label>
- 
-    <button type="submit">Create account</button>
- 
-     {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-  {{/if}}
-
-  </form>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h2>Signup</h2>
+        </div>
+        <div class="card-body">
+          <form action="/signup" method="POST">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="ironhacker" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="rockstar@ironhack.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create account</button>
+          </form>
+          {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
