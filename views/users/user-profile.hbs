@@ -1,35 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-</head>
-
-
-<body>
-
- 
 {{#if userInSession}}
   <h2>Welcome, {{ userInSession.username }}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/userProfile">Reload the page</a>
-  </button>
+  <p>This is your profile page, my friend!</p>
+
+
+  <section>
+    <h3>Add New Task</h3>
+    <input type="text" id="newTask" placeholder="Enter a new task">
+    <button onclick="addTask()">Add</button>
+
+    <h3>Your Tasks</h3>
+    <ul id="taskList">
+      <!-- Tasks entered by the user will be displayed here dynamically -->
+    </ul>
+  </section>
+
+  <script>
+    function addTask() {
+      const newTaskInput = document.getElementById('newTask');
+      const taskText = newTaskInput.value.trim();
+      if (taskText) {
+        // Create a new list item and append it to the task list
+        const taskList = document.getElementById('taskList');
+        const taskItem = document.createElement('li');
+        taskItem.textContent = taskText;
+        taskList.appendChild(taskItem);
+
+        // Clear the input field
+        newTaskInput.value = '';
+      }
+    }
+  </script>
 {{else}}
-  
-  <br><p>Still no logged in user, sorry!</p>
- 
+  <br>
+  <p>Still no logged-in user, sorry!</p>
 {{/if}}
-
-    <section>
-        <a href="/categories">Categories</a>
-
-        <a href="/tasks">Tasks</a>
-
-        <a href="/analytics">Analytics</a>
-
-        <a href="/spoons">Spoons</a>
-    </section>
-</body>
-</html>
