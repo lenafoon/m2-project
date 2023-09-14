@@ -1,7 +1,13 @@
 {{#if userInSession}}
-  <h2>Welcome, {{ userInSession.username }}!</h2>
-  <p>This is your profile page, my friend!</p>
 
+<section>
+  <div class="wrapper">
+    <div class="welcome">
+      <div class="content">
+        <h1>Hello {{ userInSession.username }},</h1>
+        <p>today you have X tasks.</p>
+      </div>
+    </div>
 
   <section>
     <h3>Add New Task</h3>
@@ -34,3 +40,118 @@
   <br>
   <p>Still no logged-in user, sorry!</p>
 {{/if}}
+
+
+
+    <!-- CATEGORIES-->
+    <div class="categories-wrapper">
+
+      <div class="categories">
+
+        <div class="category">
+            <div class="left">
+               <img src="/images/icons8-user-64.png" alt="user">
+               <h2 class="card-title">Personal<a href="/personal"></a></h2>
+               <p>X Tasks</p>
+            </div>
+            <div class="right">
+              <div class="options">
+                   <div class="toggle-btn">
+                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="category">
+            <div class="left">
+               <img src="/images/icons8-health-64.png" alt="health">
+               <h1>Health</h1>
+               <p>X Tasks</p>
+            </div>
+            <div class="right">
+              <div class="options">
+                   <div class="toggle-btn">
+                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="category">
+            <div class="left">
+               <img src="/images/icons8-work-64.png" alt="work">
+               <h1>Work</h1>
+               <p>X Tasks</p>
+            </div>
+            <div class="right">
+              <div class="options">
+                   <div class="toggle-btn">
+                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+        
+         <div class="category">
+            <div class="left">
+               <img src="/images/icons8-shopping-cart-100.png" alt="shopping">
+               <h1>Shopping</h1>
+               <p>X Tasks</p>
+            </div>
+            <div class="right">
+              <div class="options">
+                   <div class="toggle-btn">
+                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="category">
+            <div class="left">
+               <img src="/images/icons8-home-64.png" alt="home">
+               <h1>Home</h1>
+               <p>X Tasks</p>
+            </div>
+            <div class="right">
+              <div class="options">
+                   <div class="toggle-btn">
+                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="category">
+            <div class="left">
+               <img src="/images/icons8-medal-64.png" alt="challenge">
+               <h1>Challenges</h1>
+               <p>X Tasks</p>
+            </div>
+            <div class="right">
+              <div class="options">
+                   <div class="toggle-btn">
+                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
+                   </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--TASK SCREEN-->
+
+
+
+
+
+<script>src="script.js"</script>

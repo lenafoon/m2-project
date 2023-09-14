@@ -1,126 +1,65 @@
-<section>
-  <div class="wrapper">
-    <div class="welcome">
-      <div class="content">
-        <h1>Hello {{ userInSession.username }}</h1>
-        <p>Today you have X tasks.</p>
+<div class="category-screen">
+    <div class="head-wrapper">
+        <div class="back-btn"></div>
+       <div class="options">
+                   
+       </div>
+    </div>
+    <div class="category-details">
+        <img src="/images/icons8-home-64.png" alt="" id="category-img">
+        <div class="details">
+            <p>X tasks</p>
+            <h1>Home</h1>
+        </div>
+    </div>
+
+
+
+    <div class="tasks-wrapper">
+     <div class="tasks">
+           <div class="task-wrapper">
+
+              <label for="task" class="task">
+                 <input type="checkbox" name="" id="task">
+                    <span class="checkbox">
+                       <img src="/images/icons8-check-64.png" alt="">
+                    </span>
+                    <p class="task-text">clean mirrors</p>
+              </label>
+
+              <div class="delete">
+                  <img src="/images/icons8-trash-64.png" alt="trash">
+              </div>
+
+           </div>
+           
+</div>
+    </div>
+
+    <!--ADD TASK BUTTON-->
+
+    <div class="add-task-btn">
+        <img src="/images/icons8-plus-50.png" alt="">
+    </div>
+
+    <!--ADD TASK FORM-->
+
+     <div class="add-task">
+        <div class="add-task-backdrop"></div>
+        <h1 class="heading">Add Task</h1>
+        <div class="input-group">
+          <label for="task-input"> Task </label>
+          <input type="text" id="task-input" required />
+        </div>
+        <div class="input-group">
+          <label for="category-select"> Category </label>
+          <select id="category-select"></select>
+        </div>
+        <div class="btns">
+          <button class="cancel-btn">Cancel</button>
+          <button class="add-btn">Add</button>
+        </div>
       </div>
-    </div>
-
-    
-    <div class="categories-wrapper">
-
-      <div class="categories">
-
-        <div class="category">
-            <div class="left">
-               <img src="/images/icons8-user-64.png" alt="user">
-               <h1>Personal</h1>
-               <p>X Tasks</p>
-            </div>
-            <div class="right">
-              <div class="options">
-                   <div class="toggle-btn">
-                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
-                   </div>
-                </div>
-            </div>
-        </div>
 
 
-         <div class="category">
-            <div class="left">
-               <img src="/images/icons8-health-64.png" alt="health">
-               <h1>Health</h1>
-               <p>X Tasks</p>
-            </div>
-            <div class="right">
-              <div class="options">
-                   <div class="toggle-btn">
-                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
-                   </div>
-                </div>
-            </div>
-        </div>
-
-
-         <div class="category">
-            <div class="left">
-               <img src="/images/icons8-work-64.png" alt="work">
-               <h1>Work</h1>
-               <p>X Tasks</p>
-            </div>
-            <div class="right">
-              <div class="options">
-                   <div class="toggle-btn">
-                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
-                   </div>
-                </div>
-            </div>
-        </div>
-
-        
-         <div class="category">
-            <div class="left">
-               <img src="/images/icons8-shopping-cart-100.png" alt="shopping">
-               <h1>Shopping</h1>
-               <p>X Tasks</p>
-            </div>
-            <div class="right">
-              <div class="options">
-                   <div class="toggle-btn">
-                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
-                   </div>
-                </div>
-            </div>
-        </div>
-
-
-         <div class="category">
-            <div class="left">
-               <img src="/images/icons8-home-64.png" alt="home">
-               <h1>Home</h1>
-               <p>X Tasks</p>
-            </div>
-            <div class="right">
-              <div class="options">
-                   <div class="toggle-btn">
-                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
-                   </div>
-                </div>
-            </div>
-        </div>
-
-
-         <div class="category">
-            <div class="left">
-               <img src="/images/icons8-medal-64.png" alt="challenge">
-               <h1>Challenges</h1>
-               <p>X Tasks</p>
-            </div>
-            <div class="right">
-              <div class="options">
-                   <div class="toggle-btn">
-                     <button><img src="/images/icons8-options-50.png" alt="options"></button>
-                   </div>
-                </div>
-            </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-        
-
-    </div>
-</section>
-
-
-
-
-
-<script>src="script.js"</script>
+</div>
