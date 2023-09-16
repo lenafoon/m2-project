@@ -8,16 +8,24 @@ const hbs = require("hbs");
 
 const app = express();
 
+const bodyParser = require('body-parser');
+
+const mongoose = require('mongoose');
+
+const projectName = "m2-project";
+
+const capitalize = require("./utils/capitalize");
+
+
+
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
 app.use(express.static('public'));
+app.use(express.json());
 
 require("./config")(app);
 require('./config/session.config')(app);
-
-const projectName = "m2-project";
-const capitalize = require("./utils/capitalize");
 
 app.locals.appTitle = `${capitalize(projectName)}`;
 
@@ -37,6 +45,9 @@ app.use('/', authRouter);
 
 const catRoutes = require("./routes/categories.routes");
 app.use('/', catRoutes);
+
+const challengeRoutes = require('./routes/challenges.routes');
+app.use('/challenges', challengeRoutes);
 
 
 require("./error-handling")(app);

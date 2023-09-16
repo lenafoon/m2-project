@@ -1,60 +1,19 @@
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">
-          <h1>Create a New Task</h1>
-        </div>
-        <div class="card-body">
-          <form id="task-form">
-            <div class="mb-3">
-              <label for="title" class="form-label">Title:</label>
-              <input type="text" id="title" name="title" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label for="use-checklist" class="form-label">Use Checklist:</label>
-              <input type="checkbox" id="use-checklist" name="use-checklist">
-            </div>
-            <div class="mb-3" id="checklist-container" style="display: none;">
-              <label for="checklist" class="form-label">Checklist:</label>
-              <div id="checklist-items">
-                <!-- Checklist items will be added here -->
-              </div>
-              <button type="button" id="add-checklist-item" class="btn btn-sm btn-primary">Add Item</button>
-            </div>
-            <div class="mb-3" id="description-container">
-              <label for="description" class="form-label">Description:</label>
-              <textarea id="description" name="description" class="form-control" rows="4"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="due-date" class="form-label">Due Date:</label>
-              <input type="date" id="due-date" name="due-date" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label for="priority" class="form-label">Priority:</label>
-              <select id="priority" name="priority" class="form-select">
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="category" class="form-label">Category Tag:</label>
-              <select id="category" name="category" class="form-select">
-                <option value="Personal">Personal</option>
-                <option value="Health">Health</option>
-                <option value="Work">Work</option>
-                <option value="Home">Home</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Create Task</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+<h1>Tasks</h1>
+<ul>
+  {{#each tasks}}
+    <li>
+      <strong>{{title}}</strong><br>
+      <p>Description: {{description}}</p>
+      <p>Due Date: {{dueDate}}</p>
+      <p>Priority: {{priority}}</p>
+      <p>Category: {{category}}</p>
+      <p>Checklist:</p>
+      <ul>
+        {{#each checklist}}
+          <li>{{item}} ({{#if completed}}Completed{{else}}Incomplete{{/if}})</li>
+        {{/each}}
+      </ul>
+    </li>
+  {{/each}}
+</ul>
+<a href="/views/create-task.hbs">Create New Task</a>
