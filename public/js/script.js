@@ -1,3 +1,11 @@
+//PLUS BUTTON
+document.addEventListener("DOMContentLoaded", function () {
+
+    const addButton = document.getElementById("add-task-button");
+    if (addButton) {
+      addButton.addEventListener("click", showTaskSelectionPrompt);
+    }
+  });
 
 const addTaskButton = document.querySelector('.add-btn');
 const taskInput = document.querySelector('#task-input');
@@ -14,13 +22,15 @@ const categoryTaskCounts = {
     challenges: 0,
 };
 
+function initializeCategoryTaskCounts() {
+    document.querySelectorAll('.category-details').forEach(function (categoryDetail) {
+        const categoryName = categoryDetail.querySelector('h1').textContent.trim().toLowerCase();
+        const taskCount = categoryDetail.querySelectorAll('.task-wrapper').length;
+        categoryTaskCounts[categoryName] = taskCount;
+        updateCategoryTaskCount(categoryName);
+    });
+}
 
-document.querySelectorAll('.category-details').forEach(function (categoryDetail) {
-    const categoryName = categoryDetail.querySelector('h1').textContent.trim();
-    const taskCount = categoryDetail.querySelectorAll('.task-wrapper').length;
-    categoryTaskCounts[categoryName.toLowerCase()] = taskCount;
-    updateCategoryTaskCount(categoryName.toLowerCase());
-});
 
 //UPDATE NR OF TASKS IN CATEGORY
 
@@ -30,17 +40,15 @@ function updateCategoryTaskCount(category) {
         totalTasksSpan.textContent = categoryTaskCounts[category] + ' tasks';
     }
 }
-
 function addTaskToCategory(category, taskText) {
     const newTaskElement = document.createElement('div');
     newTaskElement.classList.add('task-wrapper');
 
     categoryTaskCounts[category]++;
-
     updateCategoryTaskCount(category);
     updateTotalTaskCount();
-}
 
+}
 function deleteTaskFromCategory(category) {
   categoryTaskCounts[category]--;
 
@@ -49,18 +57,7 @@ function deleteTaskFromCategory(category) {
 }
 
 
-
-
 //UPDATE NR OF TASKS
-
-function updateTaskCount() {
-    const taskCount = document.querySelectorAll('.task-wrapper').length;
-    const totalTasksSpan = document.getElementById('total-tasks');
-    
-    if (totalTasksSpan) {
-        totalTasksSpan.textContent = taskCount + ' tasks';
-    }
-}
 
 function updateTotalTaskCount() {
     let totalTasks = 0;
@@ -70,16 +67,13 @@ function updateTotalTaskCount() {
     }
 
     const totalTasksSpan = document.getElementById('total-tasks');
-    
+
     if (totalTasksSpan) {
         totalTasksSpan.textContent = totalTasks + ' tasks';
     }
 }
-
+initializeCategoryTaskCounts();
 updateTotalTaskCount();
-
-
-
 
 
 //ADD NEW TASK
@@ -141,7 +135,6 @@ addTaskButton.addEventListener('click', function () {
 
     }
 });
-
 tasksContainer.addEventListener('click', function (event) {
 const deleteButton = event.target.closest('.delete');
 if (deleteButton) {
@@ -153,7 +146,6 @@ if (deleteButton) {
 });
 
 
-
 //DELETE TASK
 
 tasksContainer.addEventListener('click', function (event) {
@@ -163,5 +155,3 @@ tasksContainer.addEventListener('click', function (event) {
         tasksContainer.removeChild(taskElement);
     }
 });
-
-
