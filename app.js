@@ -22,6 +22,7 @@ const capitalize = require("./utils/capitalize");
 app.locals.appTitle = `${capitalize(projectName)}`;
 
 
+
 //ROUTES!
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);

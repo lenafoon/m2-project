@@ -41,7 +41,7 @@ router.post('/tasks', (req, res, next) => {
 
 
 // POST NEW TASK
-router.post('/tasks', (req, res, next) => {
+/*router.post('/tasks', (req, res, next) => {
   const { title, description, dueDate, priority, category, checklistItems } = req.body;
 
   Task.create({
@@ -60,5 +60,7 @@ router.post('/tasks', (req, res, next) => {
     console.error(`Error while creating a new task: ${error}`);
     next(error);
   });
-});
+});*/
+
+
 module.exports = router;
