@@ -3,24 +3,32 @@ const mongoose = require('mongoose');
 const taskSchema = new mongoose.Schema({
   title: {
     type: String,
+    required: true,
   },
-  description: String,
-  dueDate: Date,
-  completed: {
-    type: Boolean,
-    default: false,
+  checklist: [{
+    item: {
+      type: String,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+  }],
+  description: {
+    type: String,
+  },
+  dueDate: {
+    type: Date,
   },
   priority: {
     type: String,
     enum: ['low', 'medium', 'high'],
     default: 'medium',
   },
-  tags: [String],
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+  category: {
+    type: String,
+    enum: ['Personal', 'Health', 'Work', 'Home', 'Shopping', 'Other'],
   },
-
 });
 
 const Task = mongoose.model('Task', taskSchema);

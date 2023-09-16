@@ -15,51 +15,113 @@
 
 
 
+    <div class="category-screen">
+    <!-- ... (your existing HTML) ... -->
     <div class="tasks-wrapper">
-     <div class="tasks">
-           <div class="task-wrapper">
-
-              <label for="task" class="task">
-                 <input type="checkbox" name="" id="task">
+        <div class="tasks">
+            <div class="task-wrapper">
+                <label for="task" class="task">
+                    <input type="checkbox" name="" id="task">
                     <span class="checkbox">
-                       <img src="/images/icons8-check-64.png" alt="">
+                        <img src="/images/icons8-check-64.png" alt="">
                     </span>
                     <p class="task-text">pick up meds</p>
-              </label>
-
-              <div class="delete">
-                  <img src="/images/icons8-trash-64.png" alt="trash">
-              </div>
-
-           </div>
-           
-</div>
+                </label>
+                <div class="delete">
+                    <img src="/images/icons8-trash-64.png" alt="trash">
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!--ADD TASK BUTTON-->
-
+    <!-- ADD TASK BUTTON -->
     <div class="add-task-btn">
         <img src="/images/icons8-plus-50.png" alt="">
     </div>
 
-    <!--ADD TASK FORM-->
-
-     <div class="add-task">
+    <!-- ADD TASK FORM -->
+    <div class="add-task">
         <div class="add-task-backdrop"></div>
         <h1 class="heading">Add Task</h1>
         <div class="input-group">
-          <label for="task-input"> Task </label>
-          <input type="text" id="task-input" required />
+            <label for="task-input"> Task </label>
+            <input type="text" id="task-input" required />
         </div>
         <div class="input-group">
-          <label for="category-select"> Category </label>
-          <select id="category-select"></select>
+            <label for="category-select"> Category </label>
+            <select id="category-select"></select>
         </div>
         <div class="btns">
-          <button class="cancel-btn">Cancel</button>
-          <button class="add-btn">Add</button>
+            <button class="cancel-btn">Cancel</button>
+            <button class="add-btn">Add</button>
         </div>
-      </div>
-
-
+    </div>
 </div>
+
+
+    <script>
+const addTaskButton = document.querySelector('.add-btn');
+const taskInput = document.querySelector('#task-input');
+const tasksContainer = document.querySelector('.tasks');
+
+addTaskButton.addEventListener('click', function () {
+    const newTaskText = taskInput.value;
+
+    if (newTaskText.trim() !== '') {
+
+        const newTaskElement = document.createElement('div');
+        newTaskElement.classList.add('task-wrapper');
+
+        const newTaskLabel = document.createElement('label');
+        newTaskLabel.classList.add('task');
+
+        const newTaskCheckbox = document.createElement('input');
+        newTaskCheckbox.setAttribute('type', 'checkbox');
+        newTaskCheckbox.setAttribute('name', '');
+        newTaskCheckbox.setAttribute('id', 'task');
+
+        const newTaskCheckboxSpan = document.createElement('span');
+        newTaskCheckboxSpan.classList.add('checkbox');
+
+        const newTaskCheckboxImg = document.createElement('img');
+        newTaskCheckboxImg.setAttribute('src', '/images/icons8-check-64.png');
+        newTaskCheckboxImg.setAttribute('alt', '');
+
+        newTaskCheckboxSpan.appendChild(newTaskCheckboxImg);
+        newTaskLabel.appendChild(newTaskCheckbox);
+        newTaskLabel.appendChild(newTaskCheckboxSpan);
+
+        const deleteButton = document.createElement('div');
+        deleteButton.classList.add('delete');
+        const deleteIcon = document.createElement('img');
+        deleteIcon.setAttribute('src', '/images/icons8-trash-64.png');
+        deleteIcon.setAttribute('alt', 'Delete');
+        deleteButton.appendChild(deleteIcon);
+
+        const newTaskTextElement = document.createElement('p');
+        newTaskTextElement.classList.add('task-text');
+        newTaskTextElement.textContent = newTaskText;
+
+        newTaskElement.appendChild(newTaskLabel);
+        newTaskElement.appendChild(newTaskTextElement);
+        newTaskElement.appendChild(deleteButton);
+
+        tasksContainer.appendChild(newTaskElement);
+
+        taskInput.value = '';
+
+        newTaskCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                newTaskTextElement.style.textDecoration = 'line-through';
+            } else {
+                newTaskTextElement.style.textDecoration = 'none';
+            }
+        });
+
+        deleteButton.addEventListener('click', function () {
+            tasksContainer.removeChild(newTaskElement);
+        });
+    }
+});
+
+    </script>

@@ -57,29 +57,4 @@
   </div>
 </div>
 
-<script>
-  const useChecklistCheckbox = document.getElementById("use-checklist");
-  const checklistContainer = document.getElementById("checklist-container");
-  const descriptionContainer = document.getElementById("description-container");
-  const addChecklistItemButton = document.getElementById("add-checklist-item");
-  const checklistItemsContainer = document.getElementById("checklist-items");
 
-  useChecklistCheckbox.addEventListener("change", function () {
-    if (useChecklistCheckbox.checked) {
-      checklistContainer.style.display = "block";
-      descriptionContainer.style.display = "none";
-    } else {
-      checklistContainer.style.display = "none";
-      descriptionContainer.style.display = "block";
-    }
-  });
-
-  addChecklistItemButton.addEventListener("click", function () {
-    const newItem = document.createElement("input");
-    newItem.type = "text";
-    newItem.name = "checklist-item";
-    newItem.className = "form-control mb-2";
-    newItem.placeholder = "Checklist Item";
-    checklistItemsContainer.appendChild(newItem);
-  });
-</script>

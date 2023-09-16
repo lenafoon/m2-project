@@ -21,9 +21,8 @@ body {
 
 .categories-wrapper {
   margin-top: 1rem;
-  height: 70vh;
   padding: 0 30px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .categories {
@@ -43,6 +42,7 @@ body {
   align-items: center;
   box-shadow: 0 10px 20px 5px #00000023;
   transition: all 0.3s;
+  margin-bottom: 1rem;
 }
 
 .categories .category:hover {
@@ -70,6 +70,17 @@ body {
   opacity: 0.8;
 }
 
+.category .options {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.category:hover .options {
+  opacity: 1;
+  visibility: visible;
+}
+
 .category .toggle-btn {
   width: 2rem;
   cursor: pointer;
@@ -85,6 +96,12 @@ body {
   border: none;
   background-color:#f3f3f1;
 }
+
+
+
+
+
+
 
 .category .options {
   opacity: 0;
@@ -129,6 +146,8 @@ body {
 
 }
 
+
+
 /*tasks*/
 
 .tasks-wrapper {
@@ -136,6 +155,7 @@ body {
   margin-top: 1rem;
   height: 70vh;
   padding-bottom: 20px;
+  
 }
 
 .tasks {
@@ -166,6 +186,12 @@ body {
   font-weight: 500;
   margin: 0; 
 }
+
+/* Add this CSS to align only the newly added task text to the left */
+.new-task .task-text {
+  align-self: flex-start;
+}
+
 
 .task input {
   display: none;
@@ -240,7 +266,7 @@ body {
   transform: scale(1.4);
   visibility: visible;
   opacity: 1;
-  color: red; /* Change the color to red on hover */
+  color: red; 
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -270,14 +296,14 @@ body {
   transform: rotate(45deg);
 }
 
-.add-task-btn svg {
+.add-task-btn img {
   width: 2rem;
-  color: #fff;
+  
 }
 
 .add-task {
   position: absolute;
-  bottom: -100%;
+  
   left: 0;
   width: 100%;
   padding: 20px 30px;

@@ -16,4 +16,9 @@ router.get('/shopping', (req, res) => res.render('shopping'));
 
 router.get('/work', (req, res) => res.render('work'));
 
+router.get('/education', (req, res) => res.render('education'));
+
+router.get('/finances', (req, res) => res.render('finances'));
+
+
 module.exports = router;
