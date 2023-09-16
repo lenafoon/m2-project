@@ -3,6 +3,53 @@ const addTaskButton = document.querySelector('.add-btn');
 const taskInput = document.querySelector('#task-input');
 const tasksContainer = document.querySelector('.tasks');
 
+const categoryTaskCounts = {
+    education: 1,
+    finances: 1,
+    personal: 1,
+    home: 1,
+    work: 1,
+    shopping: 1,
+    health: 1,
+    challenges: 0,
+};
+
+
+document.querySelectorAll('.category-details').forEach(function (categoryDetail) {
+    const categoryName = categoryDetail.querySelector('h1').textContent.trim();
+    const taskCount = categoryDetail.querySelectorAll('.task-wrapper').length;
+    categoryTaskCounts[categoryName.toLowerCase()] = taskCount;
+    updateCategoryTaskCount(categoryName.toLowerCase());
+});
+
+//UPDATE NR OF TASKS IN CATEGORY
+
+function updateCategoryTaskCount(category) {
+    const totalTasksSpan = document.querySelector(`.${category} .total-tasks`);
+    if (totalTasksSpan) {
+        totalTasksSpan.textContent = categoryTaskCounts[category] + ' tasks';
+    }
+}
+
+function addTaskToCategory(category, taskText) {
+    const newTaskElement = document.createElement('div');
+    newTaskElement.classList.add('task-wrapper');
+
+    categoryTaskCounts[category]++;
+
+    updateCategoryTaskCount(category);
+    updateTotalTaskCount();
+}
+
+function deleteTaskFromCategory(category) {
+  categoryTaskCounts[category]--;
+
+   updateCategoryTaskCount(category);
+   updateTotalTaskCount();
+}
+
+
+
 
 //UPDATE NR OF TASKS
 
@@ -14,7 +61,25 @@ function updateTaskCount() {
         totalTasksSpan.textContent = taskCount + ' tasks';
     }
 }
-updateTaskCount();
+
+function updateTotalTaskCount() {
+    let totalTasks = 0;
+
+    for (const category in categoryTaskCounts) {
+        totalTasks += categoryTaskCounts[category];
+    }
+
+    const totalTasksSpan = document.getElementById('total-tasks');
+    
+    if (totalTasksSpan) {
+        totalTasksSpan.textContent = totalTasks + ' tasks';
+    }
+}
+
+updateTotalTaskCount();
+
+
+
 
 
 //ADD NEW TASK
