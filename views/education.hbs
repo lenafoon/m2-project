@@ -1,37 +1,34 @@
-<!--TASK SCREEN-->
-
-<div class="category-screen screen">
-  <div class="head-wrapper">
-    <div class="back-btn">
-      <img src="/images/icons8-back-64.png" alt="back">
-
+<div class="category-screen">
+    <div class="head-wrapper">
+        <div class="back-btn"></div>
+       <div class="options">
+                   
+       </div>
     </div>
-    <div class="options">
-      <img src="/images/icons8-options-50.png" alt="options">
+    <div class="category-details">
+        <img src="/images/icons8-education-64.png" alt="" id="category-img">
+        <div class="details">
+            <p id="total-tasks"> tasks</p>
+            <h1>Education</h1>
+        </div>
     </div>
-  </div>
-  <div class="category-details">
-    <img src="/images/icons8-user-64.png" alt="category-img">
-    <div class="details">
-      <p>8 tasks</p>
-      <h1>X</h1>
 
-    </div>
-  </div>
-  <div class="tasks-wrapper">
-    <div class="tasks">
-      <div class="task-wrapper">
-        <label for="task" class="task">
-          <input type="checkbox" name="task" id="task">
-          <span class="checkbox">
-            <img src="/images/icons8-check-64.png" alt="checkmark">
-          </span>
 
+
+    <div class="category-screen">
+    <div class="tasks-wrapper">
+        <div class="tasks">
+            <div class="task-wrapper">
+                <label for="task" class="task">
+                    <input type="checkbox" name="" id="task">
+                    <span class="checkbox">
+                        <img src="/images/icons8-check-64.png" alt="">
+                    </span>
           <p>buy new car</p>
 
         </label>
         <div class="delete">
-          <img src="/images/icons8-trash-64.png" alt="delete">
+          <img src="/images/icons8-trash-64.png" alt="trash">
         </div>
       </div>
     </div>
@@ -44,34 +41,21 @@
 
 </div>
 
-
-<!--ADD TASK FORM-->
-<div class="add-task">
-  <div class="add-task-backdrop">
-
-  </div>
-
-  <h1 class="heading">Add Task</h1>
-
-  <div class="input-group">
-    <label for="task-input">Task</label>
-    <input type="text" id="task-input">
-  </div>
-
-  <div class="input-group">
-    <label for="category-select">Category</label>
-    <select id="category-select">
-      <option value="personal">Personal</option>
-    </select>
-  </div>
-
-  <div class="btns">
-          <button class="cancel-btn">Cancel</button>
-          <button class="add-btn">Add</button>
-  </div>
-
+<!-- ADD TASK FORM -->
+    <div class="add-task">
+        <div class="add-task-backdrop"></div>
+        <h1 class="heading">Add Task</h1>
+        <div class="input-group">
+            <label for="task-input"> Task </label>
+            <input type="text" id="task-input" required />
+        </div>
+        <div class="input-group">
+            <label for="category-select"> Category </label>
+            <select id="category-select"></select>
+        </div>
+        <div class="btns">
+            <button class="cancel-btn">Cancel</button>
+            <button class="add-btn">Add</button>
+        </div>
+    </div>
 </div>
-
-</div>
-
-

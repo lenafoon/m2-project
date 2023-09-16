@@ -4,26 +4,17 @@ const taskInput = document.querySelector('#task-input');
 const tasksContainer = document.querySelector('.tasks');
 
 
-
-//DISPLAY NR OF TASKS
+//UPDATE NR OF TASKS
 
 function updateTaskCount() {
-
-  const taskCount = tasksContainer.querySelectorAll('.task-wrapper').length;
-
-
-  const totalTasksSpan = document.getElementById('total-tasks');
-
-  if (totalTasksSpan) {
-      totalTasksSpan.textContent = taskCount;
-  }
+    const taskCount = document.querySelectorAll('.task-wrapper').length;
+    const totalTasksSpan = document.getElementById('total-tasks');
+    
+    if (totalTasksSpan) {
+        totalTasksSpan.textContent = taskCount + ' tasks';
+    }
 }
-
 updateTaskCount();
-
-tasksContainer.addEventListener('click', function () {
-  updateTaskCount();
-});
 
 
 //ADD NEW TASK
@@ -81,8 +72,21 @@ addTaskButton.addEventListener('click', function () {
                 newTaskTextElement.style.textDecoration = 'none';
             }
         });
+        updateTaskCount();
+
     }
 });
+
+tasksContainer.addEventListener('click', function (event) {
+const deleteButton = event.target.closest('.delete');
+if (deleteButton) {
+    const taskElement = deleteButton.parentElement;
+    tasksContainer.removeChild(taskElement);
+
+    updateTaskCount();
+  }
+});
+
 
 
 //DELETE TASK
