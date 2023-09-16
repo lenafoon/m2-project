@@ -1,9 +1,7 @@
 <div class="category-screen">
     <div class="head-wrapper">
         <div class="back-btn"></div>
-       <div class="options">
-                   
-       </div>
+        <div class="options"></div>
     </div>
     <div class="category-details">
         <img src="/images/icons8-home-64.png" alt="" id="category-img">
@@ -13,10 +11,8 @@
         </div>
     </div>
 
-
-
     <div class="tasks-wrapper">
-     <div class="tasks">
+        <div class="tasks">
            <div class="task-wrapper">
 
               <label for="task" class="task">
@@ -36,30 +32,28 @@
 </div>
     </div>
 
-    <!--ADD TASK BUTTON-->
-
-    <div class="add-task-btn">
+    <!-- ADD TASK BUTTON -->
+    <div class="add-task-btn" id="open-add-task-form">
         <img src="/images/icons8-plus-50.png" alt="">
     </div>
 
-    <!--ADD TASK FORM-->
-
-     <div class="add-task">
+    <!-- ADD TASK FORM -->
+    <div class="add-task" id="add-task-form">
         <div class="add-task-backdrop"></div>
         <h1 class="heading">Add Task</h1>
         <div class="input-group">
-          <label for="task-input"> Task </label>
-          <input type="text" id="task-input" required />
+            <label for="task-input"> Task </label>
+            <input type="text" id="task-input" required />
         </div>
         <div class="input-group">
-          <label for="category-select"> Category </label>
-          <select id="category-select"></select>
+            <label for="category-select"> Category </label>
+            <select id="category-select"></select>
         </div>
         <div class="btns">
-          <button class="cancel-btn">Cancel</button>
-          <button class="add-btn">Add</button>
+            <button class="cancel-btn" id="cancel-add-task">Cancel</button>
+            <button class="add-btn" id="submit-add-task">Add</button>
         </div>
-      </div>
-
-
+    </div>
 </div>
+
+<script>"/js/script.js"</script>

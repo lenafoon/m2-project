@@ -16,7 +16,7 @@
 
     <h3>Your Tasks</h3>
     <ul id="taskList">
-      <!-- Tasks entered by the user will be displayed here dynamically -->
+     
     </ul>
   </section>
 
@@ -25,13 +25,13 @@
       const newTaskInput = document.getElementById('newTask');
       const taskText = newTaskInput.value.trim();
       if (taskText) {
-        // Create a new list item and append it to the task list
+        
         const taskList = document.getElementById('taskList');
         const taskItem = document.createElement('li');
         taskItem.textContent = taskText;
         taskList.appendChild(taskItem);
 
-        // Clear the input field
+       
         newTaskInput.value = '';
       }
     }
