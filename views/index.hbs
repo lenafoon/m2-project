@@ -3,7 +3,7 @@
     <div class="screen home-screen">
       <div class="head-wrapper">
         <div class="menu-btn">
-        <button><img src="/images/icons8-options-50.png" alt="options"></button>
+        
       </div>
       </div>
     </div>
@@ -15,6 +15,74 @@
               <h1>Hello {{username}},</h1>
               <p>Today you have <span id="total-tasks"></span></p>
             </div>
+</div>
+
+
+<button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
+  <img src="/images/icons8-plus-50.png" alt="">
+</button>
+
+<div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="taskModalLabel">Create a New Task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="task-form">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+          </div>
+          <div class="mb-3 form-check">
+  <input type="checkbox" id="use-checklist" name="use-checklist" class="form-check-input">
+  <label class="form-check-label" for="use-checklist">Use Checklist</label>
+</div>
+
+<div class="collapse" id="checklist-items-collapse">
+  <div class="mb-3">
+    <label for="checklist" class="form-label">Checklist:</label>
+    <div id="checklist-items">
+      <!-- Checklist items here -->
+    </div>
+    <input type="text" id="new-checklist-item" class="form-control" placeholder="Add an item">
+    <button type="button" id="add-checklist-item" class="btn btn-sm btn-primary">Add Item</button>
+  </div>
+</div>
+
+          <div class="mb-3" id="description-container">
+            <label for="description" class="form-label">Description:</label>
+            <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="due-date" class="form-label">Due Date:</label>
+            <input type="date" id="due-date" name="due-date" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="priority" class="form-label">Priority:</label>
+            <select id="priority" name="priority" class="form-select">
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category Tag:</label>
+            <select id="category" name="category" class="form-select">
+              <option value="Personal">Personal</option>
+              <option value="Health">Health</option>
+              <option value="Work">Work</option>
+              <option value="Home">Home</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Create Task</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--CATEGORIES-->
