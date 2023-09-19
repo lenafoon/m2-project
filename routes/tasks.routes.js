@@ -1,29 +1,36 @@
 const express = require('express');
 const router = require('express').Router();
 const Task = require('../models/Task.model');
-const mongoose = require('mongoose');
-
-mongoose
-  .connect('mongodb://127.0.0.1:27017/m2-project')
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Error connecting to MongoDB:', err));
-
-
-
 
 //GET
 //router.get('/tasks', (req, res) => res.render('tasks'));
 
 //TASK LIST
 router.get('/tasks', (req, res) => {
+
+  const { wordToSearch } = req.query
+
+  // if (wordToSearch) {
+  //   Task.find({ title: { $regex: new RegExp(wordToSearch, 'i')}})
+  //   .then(tasks => {
+  //     res.render('tasks', { tasks });
+  //   })
+  //   .catch(error => {
+  //     console.error(`Error fetching tasks: ${error}`);
+  //     res.status(500).send('Internal Server Error');
+  //   });
+  // }
+  // else {
+
   Task.find()
     .then(tasks => {
-      res.render('tasks', { tasks });
+      res.render('tasks', { tasks, isLoggedIn: true });
     })
     .catch(error => {
       console.error(`Error fetching tasks: ${error}`);
       res.status(500).send('Internal Server Error');
     });
+  // }
 });
 
 
@@ -34,7 +41,11 @@ router.get('/create-task', (req, res) => {
 
 // FORM SUBMISSION
 router.post('/create-task', (req, res) => {
-  const { title, description, dueDate, priority, category, checklist } = req.body;
+  const { title, description, dueDate, priority, category /*, checklist */ } = req.body;
+
+  console.log(title)
+  console.log(description)
+
 
   const task = new Task({
     title,
@@ -42,7 +53,7 @@ router.post('/create-task', (req, res) => {
     dueDate,
     priority,
     category,
-    checklist: checklist.map(item => ({ item })),
+    // checklist: checklist.map(item => ({ item })),
   });
 
   task
@@ -60,9 +71,9 @@ router.post('/create-task', (req, res) => {
 
 //POST
 router.post('/tasks', (req, res, next) => {
-    const { title, description, dueDate, priority, category } = req.body;
+  const { title, description, dueDate, priority, category } = req.body;
 
-    const task = new Task({
+  const task = new Task({
     title,
     description,
     dueDate,
@@ -70,18 +81,28 @@ router.post('/tasks', (req, res, next) => {
     category,
   });
   task
-  .save()
-  .then(newTask => {
-    console.log(`A new task is created: ${newTask}!`);
-    res.redirect('/tasks');
-  })
-  .catch(error => {
-    console.error(`Error while creating a new task: ${error}`);
-    next(error);
-  });
+    .save()
+    .then(newTask => {
+      console.log(`A new task is created: ${newTask}!`);
+      res.redirect('/tasks');
+    })
+    .catch(error => {
+      console.error(`Error while creating a new task: ${error}`);
+      next(error);
+    });
 });
 
 
+//TASK CREATION FORM
+router.delete('/task/:taskId', (req, res) => {
+
+  const { taskId } = req.params
+
+    Task.findByIdAndDelete(taskId).then((removedElement) => {
+      res.send("ok")
+    })
+
+});
 
 
 module.exports = router;

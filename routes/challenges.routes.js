@@ -3,7 +3,7 @@ const router = express.Router();
 const Challenge = require('../models/Challenge.model');
 
 // GET CHALLENGES
-router.get('/', async (req, res) => {
+router.get('/challs', async (req, res) => {
   try {
     const challenges = await Challenge.find(); 
     res.render('challenges', { challenges }); 
@@ -11,8 +11,9 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: 'Error retrieving challenges' });
   }
 });
+
 // POST NEW CHALLENGE
-router.post('/', async (req, res) => {
+router.post('/challs', async (req, res) => {
   try {
     const newChallenge = new Challenge(req.body);
     const savedChallenge = await newChallenge.save();

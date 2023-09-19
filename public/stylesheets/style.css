@@ -13,6 +13,13 @@ body {
 
 }
 
+.wrapper{
+  padding-left: 15vw;
+  padding-right: 15vw;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
 .welcome {
   display: flex;
   justify-content: space-between;

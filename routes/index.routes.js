@@ -3,9 +3,10 @@ const router = express.Router();
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+
+  // We need access to the User, the 
+  res.render("index", { isLoggedIn: true });
+
 });
-
-
 
 module.exports = router;

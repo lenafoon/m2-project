@@ -1,47 +1,27 @@
 require("dotenv").config();
 
+// create mongo instance
 require("./db");
 
+// generate the express app
 const express = require("express");
-
-const hbs = require("hbs");
-
 const app = express();
 
-const bodyParser = require('body-parser');
-
-const mongoose = require('mongoose');
-
-const projectName = "m2-project";
-
-const capitalize = require("./utils/capitalize");
-
-
-
-app.set("view engine", "hbs");
-app.set("views", __dirname + "/views");
-
-app.use(express.static('public'));
-app.use(express.json());
-
+// include the external configs and send the generated app
 require("./config")(app);
-require('./config/session.config')(app);
+require("./config/session.config")(app);
 
-app.locals.appTitle = `${capitalize(projectName)}`;
-
-
+// const { isLoggedIn, isLoggedOut } = require('./middleware/route-guard')
 
 //ROUTES!
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
 
-
 const tasksRoute = require('./routes/tasks.routes');
-app.use('/', tasksRoute);//?
-
+app.use('/', tasksRoute);
 
 const authRouter = require('./routes/auth.routes');
-app.use('/', authRouter); 
+app.use('/', authRouter);
 
 const catRoutes = require("./routes/categories.routes");
 app.use('/', catRoutes);

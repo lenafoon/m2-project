@@ -3,18 +3,18 @@
     <div class="screen home-screen">
       <div class="head-wrapper">
         <div class="menu-btn">
-        
-      </div>
+
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="welcome">
-            <div class="content">
-              <h1>Hello {{username}},</h1>
-              <p>Today you have <span id="total-tasks"></span></p>
-            </div>
+  <div class="content">
+    <h1>Hello {{username}},</h1>
+    <p>Today you have <span id="total-tasks"></span></p>
+  </div>
 </div>
 
 
@@ -30,28 +30,28 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="task-form">
+        <form id="task-form" method="POST" action="/create-task">
           <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
             <input type="text" id="title" name="title" class="form-control" required>
           </div>
           <div class="mb-3 form-check">
-  <input type="checkbox" id="use-checklist" name="use-checklist" class="form-check-input">
-  <label class="form-check-label" for="use-checklist">Use Checklist</label>
-</div>
+            <input type="checkbox" id="use-checklist" name="use-checklist" class="form-check-input">
+            <label class="form-check-label" for="use-checklist">Use Checklist</label>
+          </div>
 
-<div class="collapse" id="checklist-items-collapse">
-  <div class="mb-3">
-    <label for="checklist" class="form-label">Checklist:</label>
-    <div id="checklist-items">
-      <!-- Checklist items here -->
-    </div>
-    <input type="text" id="new-checklist-item" class="form-control" placeholder="Add an item">
-    <button type="button" id="add-checklist-item" class="btn btn-sm btn-primary">Add Item</button>
-  </div>
-</div>
+          <div class="collapse" id="checklist-items-collapse">
+            <div class="mb-3">
+              <label for="checklist" class="form-label">Checklist:</label>
+              <div id="checklist-items">
+                <!-- Checklist items here -->
+              </div>
+              <input type="text" id="new-checklist-item" class="form-control" placeholder="Add an item">
+              <button type="button" id="add-checklist-item" class="btn btn-sm btn-primary">Add Item</button>
+            </div>
+          </div>
 
-<div class="mb-3" id="description-container">
+          <div class="mb-3" id="description-container">
             <label for="description" class="form-label">Description:</label>
             <textarea id="description" name="description" class="form-control" rows="4"></textarea>
           </div>
@@ -238,6 +238,3 @@
     </div>
   </div>
 </div>
-
-
-

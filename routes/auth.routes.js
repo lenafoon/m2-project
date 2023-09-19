@@ -12,8 +12,8 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
  
 // GET SIGNUP
-router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
- 
+router.get('/signup', (req, res) => res.render('auth/signup'));
+
 
 // POST SIGNUP
 router.post('/signup', (req, res, next) => {
@@ -61,12 +61,10 @@ router.post('/signup', (req, res, next) => {
         }
       });
   }) 
-  
 
 
 //GET LOGIN
 router.get('/login', (req, res) => res.render('auth/login'));
-
 
 //POST LOGIN
 router.post('/login', (req, res, next) => {
@@ -105,7 +103,7 @@ router.get('/userProfile', isLoggedIn, (req, res) => {
 
 
 //POST LOGOUT
-router.post('/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
   req.session.destroy(err => {
     if (err) next(err);
     res.redirect('/');

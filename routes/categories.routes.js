@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Task = require('./../models/Task.model')
 
 
 //GET
@@ -8,7 +9,15 @@ router.get('/challenges', (req, res) => res.render('challenges'));
 
 router.get('/health', (req, res) => res.render('health'));
 
-router.get('/home', (req, res) => res.render('home'));
+router.get('/home', (req, res) => {
+
+    Task.find({ category: "Home" }).then(tasks => {
+
+        res.render('home', { tasks, amount: tasks.length })
+
+    })
+
+});
 
 router.get('/personal', (req, res) => res.render('personal'));
 

@@ -3,13 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const addButton = document.getElementById("add-task-button");
     if (addButton) {
-      addButton.addEventListener("click", showTaskSelectionPrompt);
+        addButton.addEventListener("click", showTaskSelectionPrompt);
     }
-  });
+});
 
-const addTaskButton = document.querySelector('.add-btn');
 const taskInput = document.querySelector('#task-input');
-const tasksContainer = document.querySelector('.tasks');
+
+
+
 
 const categoryTaskCounts = {
     education: 1,
@@ -50,10 +51,10 @@ function addTaskToCategory(category, taskText) {
 
 }
 function deleteTaskFromCategory(category) {
-  categoryTaskCounts[category]--;
+    categoryTaskCounts[category]--;
 
-   updateCategoryTaskCount(category);
-   updateTotalTaskCount();
+    updateCategoryTaskCount(category);
+    updateTotalTaskCount();
 }
 
 
@@ -78,7 +79,7 @@ updateTotalTaskCount();
 
 //ADD NEW TASK
 
-addTaskButton.addEventListener('click', function () {
+const addTask = () => {
     const newTaskText = taskInput.value;
 
     if (newTaskText.trim() !== '') {
@@ -134,24 +135,57 @@ addTaskButton.addEventListener('click', function () {
         updateTaskCount();
 
     }
-});
-tasksContainer.addEventListener('click', function (event) {
-const deleteButton = event.target.closest('.delete');
-if (deleteButton) {
-    const taskElement = deleteButton.parentElement;
-    tasksContainer.removeChild(taskElement);
 
-    updateTaskCount();
-  }
-});
+}
+
+// tasksContainer.addEventListener('click', function (event) {
+//     const deleteButton = event.target.closest('.delete');
+//     if (deleteButton) {
+//         const taskElement = deleteButton.parentElement;
+//         tasksContainer.removeChild(taskElement);
+
+//         updateTaskCount();
+//     }
+// });
+
+
 
 
 //DELETE TASK
 
-tasksContainer.addEventListener('click', function (event) {
-    const deleteButton = event.target.closest('.delete');
-    if (deleteButton) {
-        const taskElement = deleteButton.parentElement;
-        tasksContainer.removeChild(taskElement);
-    }
-});
+
+const tasksContainer = document.querySelectorAll('.tasks')
+
+tasksContainer.forEach(taskContainer => {
+
+    taskContainer.addEventListener('click', function (event) {
+        const deleteButton = event.target.closest('.delete');
+        if (deleteButton) {
+
+            const taskId = taskContainer.getAttribute('task-id')
+
+            fetch(`/task/${taskId}`, {
+                method: "DELETE"
+            }).then(response => {
+                if (response.status == 200)
+                {
+
+                    taskContainer.parentElement.removeChild(taskContainer)
+
+                }
+                else {
+                    throw new Error(`Something went wrong.`)
+                }
+            })
+
+
+
+        }
+    });
+})
+
+const checkTask = () => {
+
+
+
+}
