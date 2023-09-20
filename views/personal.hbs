@@ -19,7 +19,7 @@
 
 
 
-    <div class="tasks-wrapper">
+    {{!-- <div class="tasks-wrapper">
      <div class="tasks">
            <div class="task-wrapper">
 
@@ -38,7 +38,28 @@
            </div>
            
 </div>
-    </div>
+    </div> --}}
+
+    <h1>Tasks</h1>
+<ul>
+  {{#each tasks}}
+    <li>
+      <strong>{{title}}</strong><br>
+      <p>Description: {{description}}</p>
+      <p>Due Date: {{dueDate}}</p>
+      <p>Priority: {{priority}}</p>
+      <p>Category: {{category}}</p>
+      <p>Checklist:</p>
+      <ul>
+        {{#each checklist}}
+          <li>{{item}} ({{#if completed}}Completed{{else}}Incomplete{{/if}})</li>
+        {{/each}}
+      </ul>
+    </li>
+  {{/each}}
+</ul>
+<a href="/views/create-task.hbs">Create New Task</a>
+
 
     <!--ADD TASK BUTTON-->
 

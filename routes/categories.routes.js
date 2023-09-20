@@ -3,11 +3,6 @@ const Task = require('./../models/Task.model')
 
 
 //GET
-router.get('/categories', (req, res) => res.render('categories'));
-
-router.get('/challenges', (req, res) => res.render('challenges'));
-
-router.get('/health', (req, res) => res.render('health'));
 
 router.get('/home', (req, res) => {
 
@@ -19,15 +14,92 @@ router.get('/home', (req, res) => {
 
 });
 
-router.get('/personal', (req, res) => res.render('personal'));
+router.get('/personal', (req, res) => {
+    Task.find({ category: "personal"})
+    .then(tasks => {
+      res.render('personal', { tasks, isLoggedIn: true });
+    })
+    .catch(error => {
+      console.error(`Error fetching tasks: ${error}`);
+      res.status(500).send('Internal Server Error');
+    });
+});
 
-router.get('/shopping', (req, res) => res.render('shopping'));
+router.get('/work', (req, res) => {
+    Task.find({ category: "work"})
+    .then(tasks => {
+      res.render('work', { tasks, isLoggedIn: true });
+    })
+    .catch(error => {
+      console.error(`Error fetching tasks: ${error}`);
+      res.status(500).send('Internal Server Error');
+    });
+});
 
-router.get('/work', (req, res) => res.render('work'));
+router.get('/shopping', (req, res) => {
+    Task.find({ category: "shopping"})
+    .then(tasks => {
+      res.render('shopping', { tasks, isLoggedIn: true });
+    })
+    .catch(error => {
+      console.error(`Error fetching tasks: ${error}`);
+      res.status(500).send('Internal Server Error');
+    });
+});
 
-router.get('/education', (req, res) => res.render('education'));
+router.get('/health', (req, res) => {
+    Task.find({ category: "health"})
+    .then(tasks => {
+      res.render('health', { tasks, isLoggedIn: true });
+    })
+    .catch(error => {
+      console.error(`Error fetching tasks: ${error}`);
+      res.status(500).send('Internal Server Error');
+    });
+});
 
-router.get('/finances', (req, res) => res.render('finances'));
+router.get('/categories', (req, res) => {
+    Task.find({ category: "categories"})
+    .then(tasks => {
+      res.render('categories', { tasks, isLoggedIn: true });
+    })
+    .catch(error => {
+      console.error(`Error fetching tasks: ${error}`);
+      res.status(500).send('Internal Server Error');
+    });
+});
+router.get('/challenges', (req, res) => {
+    Task.find({ category: "challenges"})
+    .then(tasks => {
+      res.render('challenges', { tasks, isLoggedIn: true });
+    })
+    .catch(error => {
+      console.error(`Error fetching tasks: ${error}`);
+      res.status(500).send('Internal Server Error');
+    });
+});
+
+router.get('/education', (req, res) => {
+    Task.find({ category: "education"})
+    .then(tasks => {
+      res.render('education', { tasks, isLoggedIn: true });
+    })
+    .catch(error => {
+      console.error(`Error fetching tasks: ${error}`);
+      res.status(500).send('Internal Server Error');
+    });
+});
+
+router.get('/finances', (req, res) => {
+    Task.find({ category: "finances"})
+    .then(tasks => {
+      res.render('finances', { tasks, isLoggedIn: true });
+    })
+    .catch(error => {
+      console.error(`Error fetching tasks: ${error}`);
+      res.status(500).send('Internal Server Error');
+    });
+});
 
 
 module.exports = router;
