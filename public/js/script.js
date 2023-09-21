@@ -143,6 +143,29 @@ addTaskButton.addEventListener('click', function () {
 
 
 });
+
+//EDIT TASK
+const editButtons = document.querySelectorAll('.edit img');
+editButtons.forEach((editButton) => {
+    editButton.addEventListener('click', handleEditTask);
+});
+
+function handleEditTask(event) {
+    const taskElement = event.target.closest('.task-wrapper');
+    const taskTextElement = taskElement.querySelector('.task-text');
+
+    const currentTaskText = taskTextElement.textContent;
+
+    const newTaskText = prompt('Edit task:', currentTaskText);
+
+    if (newTaskText !== null && newTaskText !== currentTaskText) {
+        taskTextElement.textContent = newTaskText;
+    }
+}
+
+
+
+//DELETE TASK
  tasksContainer.addEventListener('click', function (event) {
     const deleteButton = event.target.closest('.delete');
      if (deleteButton) {
@@ -156,6 +179,6 @@ addTaskButton.addEventListener('click', function () {
 
 
 
-//DELETE TASK
+
 
 

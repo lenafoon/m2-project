@@ -269,6 +269,32 @@ body {
   opacity: 0.8;
 }
 
+.task-wrapper .edit {
+  width: 1.5rem; 
+  height: 1.5rem;
+  border-radius: 50%;
+  color: #2e2e2e;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -500px;
+}
+
+.task-wrapper .edit img {
+  width: 1.5rem;
+  height: 1.5rem;
+  
+}
+
+.task-wrapper .edit:hover {
+  transform: scale(1.4);
+  visibility: visible;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .task-wrapper .delete {
   width: 1.5rem; 
   height: 1.5rem;
@@ -394,6 +420,39 @@ body {
 button.add-btn {
   background-color: #39a6f0;
   color: #fff
+}
+
+
+
+/* Style for the spoon count input */
+.spoons-input {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.spoons-input label {
+  margin-right: 10px;
+}
+
+/* Style for displaying the spoon count next to tasks */
+.task-spoon-count {
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+/* Style for the spoon icons */
+.spoon-icons {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px; /* Add some spacing between icons if needed */
+}
+
+.spoon-icon {
+  width: 1.5rem; /* Adjust the size as needed */
+  height: 1.5rem; /* Adjust the size as needed */
+  margin-right: 5px; /* Add some spacing between icons if needed */
 }
 
 

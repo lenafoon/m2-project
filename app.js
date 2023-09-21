@@ -29,6 +29,8 @@ app.use('/', catRoutes);
 const challengeRoutes = require('./routes/challenges.routes');
 app.use('/challenges', challengeRoutes);
 
+const spoonRoutes = require('./routes/categories.routes');
+app.use('/', spoonRoutes);
 
 require("./error-handling")(app);
 

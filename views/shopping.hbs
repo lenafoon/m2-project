@@ -28,6 +28,10 @@
 
                 </label>
 
+                <div class="edit">
+                    <img src="/images/icons8-edit-64.png" alt="Edit">
+                </div>
+
                 <div class="delete">
                     <img src="/images/icons8-trash-64.png" alt="trash">
                 </div>
@@ -50,8 +54,18 @@
             <input type="text" id="task-input" required />
         </div>
         <div class="input-group">
-            <label for="category-select"> Category </label>
-            <select id="category-select"></select>
+            <label for="category-select"> Category <select name="category">
+      <option value="Personal">Personal</option>
+      <option value="Health">Health</option>
+      <option value="Work">Work</option>
+      <option value="Home">Home</option>
+      <option value="Shopping">Shopping</option>
+      <option value="Education">Education</option>
+      <option value="Finances">Finances</option>
+      
+    </select>
+    </label>
+            
         </div>
         <div class="btns">
             <button class="cancel-btn">Cancel</button>

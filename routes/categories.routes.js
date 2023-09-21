@@ -101,5 +101,16 @@ router.get('/finances', (req, res) => {
     });
 });
 
+router.get('/spoons', (req, res) => {
+  Task.find({ category: "spoons"})
+  .then(tasks => {
+    res.render('spoons', { tasks, isLoggedIn: true });
+  })
+  .catch(error => {
+    console.error(`Error fetching tasks: ${error}`);
+    res.status(500).send('Internal Server Error');
+  });
+});
+
 
 module.exports = router;
