@@ -446,14 +446,41 @@ button.add-btn {
 .spoon-icons {
   display: inline-flex;
   align-items: center;
-  margin-right: 10px; /* Add some spacing between icons if needed */
+  margin-right: 10px; 
 }
 
 .spoon-icon {
-  width: 1.5rem; /* Adjust the size as needed */
-  height: 1.5rem; /* Adjust the size as needed */
-  margin-right: 5px; /* Add some spacing between icons if needed */
+  width: 1.5rem;
+  height: 1.5rem; 
+  margin-right: 5px;
 }
 
+/* Hide additional info and icons by default */
+.task-info .edit,
+.task-info .delete,
+.additional-info {
+  display: none;
+}
 
+/* Show additional info and icons on task hover */
+.task:hover .task-info .edit,
+.task:hover .task-info .delete,
+.task:hover .additional-info {
+  display: inline-block;
+}
+
+/* Restyle edit and delete icons */
+.edit,
+.delete {
+  width: 20px;
+  height: 20px; 
+  margin-left: 10px; 
+  vertical-align: middle;
+}
+
+/* Add hover effect to edit and delete icons */
+.task:hover .edit,
+.task:hover .delete {
+  transform: scale(1.2); 
+}
 
