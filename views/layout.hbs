@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,72 +10,67 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 
+
+
 <body>
-
-
-
 
    <div class="wrapper">
       <div class="screen-backdrop">
 
-         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+        <nav class="navbar bg-body-tertiary fixed-top">
+           <div class="container-fluid">
                <a class="navbar-brand" href="#">To Do App</a>
-               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                  aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+               <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
                </button>
-               <div class="collapse navbar-collapse" id="navbarText">
 
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                     {{#if isLoggedIn}}
-
-                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Dashboard</a>
-                     </li>
-
-                     <li class="nav-item">
-                        <a class="nav-link" href="/categories">Categories</a>
-                     </li>
-
-                     <li class="nav-item">
-                        <a class="nav-link" href="/tasks">Create a Task</a>
-                     </li>
-
-                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Log out</a>
-                     </li>
-
-                     {{else}}
-
-                     <li class="nav-item">
-                        <a class="nav-link" href="/signup">Sign Up</a>
-                     </li>
-
-                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                     </li>
-
-                     {{/if}}
-
-                  </ul>
-                  <form class="d-flex" role="search">
-                     <input class="form-control me-2" type="search" name="wordToSearch" placeholder="Search"
-                        aria-label="Search">
-                     <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
+           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+               <div class="offcanvas-header">
+                   <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                </div>
-            </div>
-         </nav>
 
-         <main>
+               <div class="offcanvas-body">
+                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                       {{#if isLoggedIn}}
+                       <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Dashboard</a>
+                       </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="/categories">Categories</a>
+                       </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="/tasks">Create a Task</a>
+                       </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="/logout">Log out</a>
+                       </li>
+                      {{else}}
+                       <li class="nav-item">
+                        <a class="nav-link" href="/signup">Sign Up</a>
+                       </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                       </li>
+                       {{/if}}
+                   </ul>
 
-            {{{body}}}
+                   <form class="d-flex" role="search">
+                       <input class="form-control me-2" type="search" name="wordToSearch" placeholder="Search" aria-label="Search">
+                       <button class="btn btn-outline-success" type="submit">Search</button>
+                   </form>
+               </div>
+             </div>
+           </div>
+     </nav>
 
-         </main>
+           <main>
+
+                {{{body}}}
+
+            </main>
+        </div>
       </div>
-   </div>
 
 
 

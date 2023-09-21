@@ -1,3 +1,5 @@
+<!--index.hbs-->
+
 <div class="wrapper show-category">
   <div class="screen-backdrop">
     <div class="screen home-screen">
@@ -15,12 +17,12 @@
     <h1>Hello {{username}},</h1>
     <p>Today you have <span id="total-tasks"></span></p>
   </div>
+
+  <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
+     <img src="/images/icons8-plus-50.png" alt="">
+  </button>
+
 </div>
-
-
-<button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
-  <img src="/images/icons8-plus-50.png" alt="">
-</button>
 
 <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -75,7 +77,8 @@
               <option value="Work">Work</option>
               <option value="Home">Home</option>
               <option value="Shopping">Shopping</option>
-              <option value="Other">Other</option>
+              <option value="Education">Education</option>
+              <option value="Finances">Finances</option>
             </select>
           </div>
           <button type="submit" class="btn btn-primary">Create Task</button>

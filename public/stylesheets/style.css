@@ -25,6 +25,20 @@ body {
   justify-content: space-between;
 }
 
+#open-modal-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
 .categories-wrapper {
   margin-top: 1rem;
   padding: 0 30px;
@@ -64,6 +78,11 @@ body {
 
 .category .left img {
   width: 3rem;
+}
+.categories .category .content h1 a {
+  color: black;
+  text-decoration: none;
+  font-weight: 550;
 }
 
 .category .content h1 {

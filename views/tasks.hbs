@@ -1,19 +1,23 @@
-<h1>Tasks</h1>
-<ul>
+<h1>My Tasks</h1>
+<ul class="list-group">
   {{#each tasks}}
-    <li>
-      <strong>{{title}}</strong><br>
-      <p>Description: {{description}}</p>
-      <p>Due Date: {{dueDate}}</p>
-      <p>Priority: {{priority}}</p>
-      <p>Category: {{category}}</p>
-      <p>Checklist:</p>
-      <ul>
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <h5 class="mb-1"><strong>{{title}}</strong></h5>
+        <small class="text-muted">Due Date: {{dueDate}}</small>
+      </div>
+      <p class="mb-1">Description: {{description}}</p>
+      <p class="mb-1">Priority: {{priority}}</p>
+      <p class="mb-1">Category: {{category}}</p>
+      <p class="mb-0">Checklist:</p>
+      <ul class="list-group">
         {{#each checklist}}
-          <li>{{item}} ({{#if completed}}Completed{{else}}Incomplete{{/if}})</li>
+          <li class="list-group-item">
+            {{item}} <span class="badge badge-{{#if completed}}success{{else}}danger{{/if}}">{{#if completed}}Completed{{else}}Incomplete{{/if}}</span>
+          </li>
         {{/each}}
       </ul>
     </li>
   {{/each}}
 </ul>
-<a href="/views/create-task.hbs">Create New Task</a>
+<a href="/views/create-task.hbs" class="btn btn-primary mt-3">Create New Task</a>

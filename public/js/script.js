@@ -1,5 +1,5 @@
-//PLUS BUTTON
-document.addEventListener("DOMContentLoaded", function () {
+ //PLUS BUTTON
+ document.addEventListener("DOMContentLoaded", function () {
 
     const addButton = document.getElementById("add-task-button");
     if (addButton) {
@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+const addTaskButton = document.querySelector('.add-btn');
 const taskInput = document.querySelector('#task-input');
+const tasksContainer = document.querySelector('.tasks');
 
 
 
@@ -41,6 +43,9 @@ function updateCategoryTaskCount(category) {
         totalTasksSpan.textContent = categoryTaskCounts[category] + ' tasks';
     }
 }
+
+
+
 function addTaskToCategory(category, taskText) {
     const newTaskElement = document.createElement('div');
     newTaskElement.classList.add('task-wrapper');
@@ -54,7 +59,7 @@ function deleteTaskFromCategory(category) {
     categoryTaskCounts[category]--;
 
     updateCategoryTaskCount(category);
-    updateTotalTaskCount();
+    
 }
 
 
@@ -78,8 +83,8 @@ updateTotalTaskCount();
 
 
 //ADD NEW TASK
+addTaskButton.addEventListener('click', function () {
 
-const addTask = () => {
     const newTaskText = taskInput.value;
 
     if (newTaskText.trim() !== '') {
@@ -136,17 +141,17 @@ const addTask = () => {
 
     }
 
-}
 
-// tasksContainer.addEventListener('click', function (event) {
-//     const deleteButton = event.target.closest('.delete');
-//     if (deleteButton) {
-//         const taskElement = deleteButton.parentElement;
-//         tasksContainer.removeChild(taskElement);
+});
+ tasksContainer.addEventListener('click', function (event) {
+    const deleteButton = event.target.closest('.delete');
+     if (deleteButton) {
+       const taskElement = deleteButton.parentElement;
+         tasksContainer.removeChild(taskElement);
 
-//         updateTaskCount();
-//     }
-// });
+        updateTaskCount();
+    }
+ });
 
 
 
@@ -154,38 +159,3 @@ const addTask = () => {
 //DELETE TASK
 
 
-const tasksContainer = document.querySelectorAll('.tasks')
-
-tasksContainer.forEach(taskContainer => {
-
-    taskContainer.addEventListener('click', function (event) {
-        const deleteButton = event.target.closest('.delete');
-        if (deleteButton) {
-
-            const taskId = taskContainer.getAttribute('task-id')
-
-            fetch(`/task/${taskId}`, {
-                method: "DELETE"
-            }).then(response => {
-                if (response.status == 200)
-                {
-
-                    taskContainer.parentElement.removeChild(taskContainer)
-
-                }
-                else {
-                    throw new Error(`Something went wrong.`)
-                }
-            })
-
-
-
-        }
-    });
-})
-
-const checkTask = () => {
-
-
-
-}
