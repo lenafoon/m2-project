@@ -18,7 +18,7 @@
     <div class="category-screen">
     <div class="tasks-wrapper">
      <div class="tasks">
-
+{{#each tasks}}
            <div class="task-wrapper">
               <label for="task" class="task">
 
@@ -26,7 +26,7 @@
                     <span class="checkbox">
                        <img src="/images/icons8-check-64.png" alt="">
                     </span>
-                    <p class="task-text">get a haircut</p>
+                    <p class="task-text">{{title}}</p>
 
               </label>
 
@@ -38,6 +38,7 @@
                   <img src="/images/icons8-trash-64.png" alt="trash">
               </div>
            </div>  
+           {{/each}}
        </div>
     </div>
     

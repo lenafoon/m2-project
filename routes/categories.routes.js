@@ -15,8 +15,9 @@ router.get('/home', (req, res) => {
 });
 
 router.get('/personal', (req, res) => {
-    Task.find({ category: "personal"})
+    Task.find({ category: "Personal"})
     .then(tasks => {
+      console.log(tasks)
       res.render('personal', { tasks, isLoggedIn: true });
     })
     .catch(error => {
