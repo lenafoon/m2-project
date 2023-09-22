@@ -1,0 +1,100 @@
+<div class="category-screen">
+    <div class="head-wrapper">
+        <div class="back-btn"></div>
+        <div class="options">
+        </div>
+    </div>
+
+    <div class="category-details">
+        <img src="{{metadata.icon}}" alt="" id="category-img">
+        <div class="details">
+            <p><span class="total-tasks">0</span> tasks</p>
+            <h1>{{metadata.name}}</h1>
+        </div>
+    </div>
+
+    <div class="category-screen">
+        <div class="tasks-wrapper">
+            <div class="tasks">
+                {{#each tasks}}
+                <div class="task-wrapper">
+                    <label for="task" class="task">
+
+                        <input type="checkbox" name="" id="task">
+                        <span class="checkbox">
+                            <img src="/images/icons8-check-64.png" alt="">
+                        </span>
+                        <p class="task-text">{{title}}</p>
+
+                    </label>
+
+                    <div class="edit">
+                        <img src="/images/icons8-edit-64.png" alt="Edit">
+                    </div>
+                    <div class="delete" taskId="{{_id}}" onclick="deleteTask(event)">
+                        <img src="/images/icons8-trash-64.png" alt="trash">
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <!--ADD TASK BUTTON-->
+
+        <div class="add-task-btn">
+            <img src="/images/icons8-plus-50.png" alt="">
+        </div>
+
+        <!--ADD TASK FORM-->
+        <div class="add-task">
+            <div class="add-task-backdrop"></div>
+            <h1 class="heading">Add Task</h1>
+            <div class="input-group">
+                <label for="task-input"> Task </label>
+                <input type="text" id="task-input" required />
+            </div>
+            
+            <div class="btns">
+                <button class="cancel-btn">Cancel</button>
+                <button class="add-btn" onclick="createTask()">Add</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        function createTask() {
+            const taskEl = document.querySelector('#task-input')
+            const task = taskEl.value
+
+            const payload = {
+                title: task,
+                description: task,
+                dueDate: new Date(),
+                priority: "medium",
+                category: "{{metadata.name}}"
+            }
+
+            fetch('http://localhost:3000/task', {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(() => {
+                window.location.reload()
+            }).catch(() => {
+                alert("Something went wrong :-(")
+            })
+        }
+
+        function deleteTask(event) {
+            const id = event.target.parentNode.attributes.taskid.nodeValue
+            fetch(`http://localhost:3000/task/${id}`, {
+                method: "DELETE",
+            }).then(() => location.reload())
+
+            
+        }
+    </script>

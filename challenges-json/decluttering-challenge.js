@@ -1,6 +1,6 @@
 
 
-[
+const decluttering = [
     {
         "name": "Organize your pantry",
         "difficulty": "Hard",
@@ -167,3 +167,7 @@
         "completed": false
     }
 ]
+
+module.exports = {
+    decluttering
+}

@@ -27,7 +27,7 @@ const catRoutes = require("./routes/categories.routes");
 app.use('/', catRoutes);
 
 const challengeRoutes = require('./routes/challenges.routes');
-app.use('/challenges', challengeRoutes);
+app.use('/', challengeRoutes);
 
 const spoonRoutes = require('./routes/categories.routes');
 app.use('/', spoonRoutes);
