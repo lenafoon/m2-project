@@ -1,3 +1,8 @@
+ //script.js
+ 
+ 
+
+ 
  //PLUS BUTTON
  document.addEventListener("DOMContentLoaded", function () {
 
@@ -10,9 +15,6 @@
 const addTaskButton = document.querySelector('.add-btn');
 const taskInput = document.querySelector('#task-input');
 const tasksContainer = document.querySelector('.tasks');
-
-
-
 
 const categoryTaskCounts = {
     education: 1,
@@ -33,8 +35,6 @@ function initializeCategoryTaskCounts() {
         updateCategoryTaskCount(categoryName);
     });
 }
-
-
 //UPDATE NR OF TASKS IN CATEGORY
 
 function updateCategoryTaskCount(category) {
@@ -43,8 +43,6 @@ function updateCategoryTaskCount(category) {
         totalTasksSpan.textContent = categoryTaskCounts[category] + ' tasks';
     }
 }
-
-
 
 function addTaskToCategory(category, taskText) {
     const newTaskElement = document.createElement('div');
@@ -61,7 +59,6 @@ function deleteTaskFromCategory(category) {
     updateCategoryTaskCount(category);
     
 }
-
 
 //UPDATE NR OF TASKS
 
@@ -163,8 +160,6 @@ function handleEditTask(event) {
     }
 }
 
-
-
 //DELETE TASK
  tasksContainer.addEventListener('click', function (event) {
     const deleteButton = event.target.closest('.delete');
@@ -175,10 +170,3 @@ function handleEditTask(event) {
         updateTaskCount();
     }
  });
-
-
-
-
-
-
-
