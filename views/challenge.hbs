@@ -1,0 +1,10 @@
+<h1>Decluttering Challenge Tasks</h1>
+<ul>
+  {{#each decluttering}}
+    <li>
+      <strong>Name:</strong> {{name}}<br>
+      <strong>Difficulty:</strong> {{difficulty}}<br>
+      <strong>Completed:</strong> {{#if completed}}Yes{{else}}No{{/if}}
+    </li>
+  {{/each}}
+</ul>
