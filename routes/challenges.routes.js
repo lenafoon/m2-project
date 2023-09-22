@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Challenge = require('../models/Challenge.model');
+const decluttering = require('../challenges-json/decluttering-challenge.json')
 
 // GET CHALLENGES
-router.get('/challs', async (req, res) => {
+router.get('/challenges', async (req, res) => {
   try {
-    const challenges = await Challenge.find(); 
-    res.render('challenges', { challenges }); 
+    const decluttering = await Challenge.find(); 
+    res.render('challenges', { decluttering }); 
   } catch (error) {
     res.status(500).json({ error: 'Error retrieving challenges' });
   }

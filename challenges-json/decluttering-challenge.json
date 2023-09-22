@@ -1,18 +1,7 @@
-const mongoose = require('mongoose');
-const Challenge = require('/models/Challenge.model'); 
 
-mongoose.connect('mongodb://localhost:27017/m2-project', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
 
-const db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', async () => {
- 
-  const initialChallenges = [
-    [{
+[
+    {
         "name": "Organize your pantry",
         "difficulty": "Hard",
         "completed": false
@@ -171,22 +160,10 @@ db.once('open', async () => {
         "name": "Declutter your spice cabinet",
         "difficulty": "Medium",
         "completed": false
-    },{
+    },
+    {
         "name": "Organize your paperwork",
         "difficulty": "Hard",
         "completed": false
     }
-    ]
-    
-  ];
-
-  try {
-    await Challenge.insertMany(initialChallenges);
-    console.log('Challenges data populated successfully');
-  } catch (error) {
-    console.error('Error populating challenges data:', error);
-  } finally {
-    
-    db.close();
-  }
-});
+]

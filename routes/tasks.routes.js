@@ -2,6 +2,12 @@ const express = require('express');
 const router = require('express').Router();
 const Task = require('../models/Task.model');
 
+
+//BACK BUTTON
+document.querySelector('.back-btn').addEventListener('click', function() {
+  res.render("/index");
+});
+
 //GET
 //router.get('/tasks', (req, res) => res.render('tasks'));
 

@@ -1,8 +1,10 @@
 <h1>Challenges</h1>
-
-<section>
-  <div id="challenges-container">
-    
-  </div>
-
-</section>
+  <ul>
+    {{#each decluttering}}
+      <li>
+        <strong>Name:</strong> {{this.name}}<br>
+        <strong>Difficulty:</strong> {{this.difficulty}}<br>
+        <strong>Completed:</strong> {{this.completed}}
+      </li>
+    {{/each}}
+  </ul>

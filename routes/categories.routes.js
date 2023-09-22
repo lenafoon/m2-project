@@ -69,16 +69,17 @@ router.get('/categories', (req, res) => {
       res.status(500).send('Internal Server Error');
     });
 });
+
 router.get('/challenges', (req, res) => {
     Task.find({ category: "challenges"})
     .then(tasks => {
       res.render('challenges', { tasks, isLoggedIn: true });
     })
     .catch(error => {
-      console.error(`Error fetching tasks: ${error}`);
-      res.status(500).send('Internal Server Error');
-    });
-});
+       console.error(`Error fetching tasks: ${error}`);
+   res.status(500).send('Internal Server Error');
+     });
+ });
 
 router.get('/education', (req, res) => {
     Task.find({ category: "education"})
