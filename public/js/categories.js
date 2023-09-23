@@ -43,7 +43,7 @@ const categories = [
         id: 'spoons',
         name: 'Spoons',
         icon: '/images/icons8-teaspoon-50.png'
-    },
+   },
 
 ]
 

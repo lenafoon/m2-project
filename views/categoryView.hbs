@@ -1,23 +1,37 @@
+<!--categoryView.hbs-->
 <div class="category-screen">
     <div class="head-wrapper">
         <div class="back-btn">
              <a href="/" class="back-btn">
             <img src="/images/icons8-back-64.png" alt="Back" />
-          </a>
+          </a> 
         </div>
         <div class="options">
         </div>
     </div>
 
+
+
+
     <div class="category-details">
         <img src="{{metadata.icon}}" alt="" id="category-img">
         <div class="details">
-            <p><span class="total-tasks">0</span> tasks</p>
+            <p><span class="total-tasks" id="total-task-count">0</span> tasks</p>
             <h1>{{metadata.name}}</h1>
         </div>
     </div>
 
     <div class="category-screen">
+
+        <div class="spoons-feature">
+           <!-- Add content for the "Spoons" feature here -->
+           <h2>Spoon Count: {{spoonCount}}</h2>
+           <p>How many spoons do you have today?</p>
+           <button onclick="incrementSpoonCount()">Add Spoon</button>
+           <button onclick="decrementSpoonCount()">Remove Spoon</button>
+        </div>
+
+
         <div class="tasks-wrapper">
             <div class="tasks">
                 {{#each tasks}}
@@ -42,6 +56,9 @@
                 {{/each}}
             </div>
         </div>
+
+
+        
 
         <!--ADD TASK BUTTON-->
 
@@ -68,7 +85,27 @@
     </div>
 
     <script>
-        function createTask() {
+    let spoonCount = 10; 
+
+    function incrementSpoonCount() {
+        spoonCount++;
+        updateSpoonCount();
+    }
+
+    function decrementSpoonCount() {
+        if (spoonCount > 0) {
+            spoonCount--;
+            updateSpoonCount();
+        }
+    }
+
+    function updateSpoonCount() {
+        const spoonCountElement = document.querySelector('#spoon-count');
+        spoonCountElement.textContent = spoonCount;
+    }
+
+    
+    function createTask() {
             const taskEl = document.querySelector('#task-input')
             const task = taskEl.value
 
@@ -101,4 +138,11 @@
 
             
         }
+
+        function updateTotalTasksCount() {
+    const totalTasksElement = document.getElementById('total-task-count');
+    const taskElements = document.querySelectorAll('.task-wrapper');
+    totalTasksElement.textContent = taskElements.length;
+}
+updateTotalTasksCount();
     </script>
