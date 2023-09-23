@@ -4,61 +4,54 @@
         <div class="back-btn">
              <a href="/" class="back-btn">
             <img src="/images/icons8-back-64.png" alt="Back" />
-          </a> 
+          </a>
         </div>
         <div class="options">
         </div>
     </div>
 
-
-
-
     <div class="category-details">
         <img src="{{metadata.icon}}" alt="" id="category-img">
         <div class="details">
-            <p><span class="total-tasks" id="total-task-count">0</span> tasks</p>
+            
             <h1>{{metadata.name}}</h1>
         </div>
     </div>
 
     <div class="category-screen">
-
-        <div class="spoons-feature">
-           <!-- Add content for the "Spoons" feature here -->
-           <h2>Spoon Count: {{spoonCount}}</h2>
-           <p>How many spoons do you have today?</p>
-           <button onclick="incrementSpoonCount()">Add Spoon</button>
-           <button onclick="decrementSpoonCount()">Remove Spoon</button>
-        </div>
-
-
         <div class="tasks-wrapper">
             <div class="tasks">
                 {{#each tasks}}
                 <div class="task-wrapper">
-                    <label for="task" class="task">
+                    <label for="task-{{_id}}" class="task">
 
-                        <input type="checkbox" name="" id="task">
+                        <input type="checkbox" name="" id="task-{{_id}}">
                         <span class="checkbox">
                             <img src="/images/icons8-check-64.png" alt="">
                         </span>
                         <p class="task-text">{{title}}</p>
 
                     </label>
+                    <div class="optionsTask">
+
+                        <div class="spoon">
+                        <img src="/images/icons8-teaspoon-50.png" alt="spoon">
+                    </div>
 
                     <div class="edit">
-                        <img src="/images/icons8-edit-64.png" alt="Edit">
+                        <img src="/images/icons8-edit-64.png" alt="edit">
                     </div>
                     <div class="delete" taskId="{{_id}}" onclick="deleteTask(event)">
                         <img src="/images/icons8-trash-64.png" alt="trash">
                     </div>
+
+                    </div>
+
+                    
                 </div>
                 {{/each}}
             </div>
         </div>
-
-
-        
 
         <!--ADD TASK BUTTON-->
 
@@ -84,27 +77,7 @@
 
     </div>
 
-    <script>
-    let spoonCount = 10; 
-
-    function incrementSpoonCount() {
-        spoonCount++;
-        updateSpoonCount();
-    }
-
-    function decrementSpoonCount() {
-        if (spoonCount > 0) {
-            spoonCount--;
-            updateSpoonCount();
-        }
-    }
-
-    function updateSpoonCount() {
-        const spoonCountElement = document.querySelector('#spoon-count');
-        spoonCountElement.textContent = spoonCount;
-    }
-
-    
+<script>
     function createTask() {
             const taskEl = document.querySelector('#task-input')
             const task = taskEl.value
@@ -145,4 +118,13 @@
     totalTasksElement.textContent = taskElements.length;
 }
 updateTotalTasksCount();
-    </script>
+
+const taskCheckboxes = document.querySelectorAll('.task-wrapper input[type="checkbox"]');
+
+taskCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('click', handleTaskCheckboxClick);
+});
+
+function handleTaskCheckboxClick(event) {
+    const checkbox = event.target};
+</script>

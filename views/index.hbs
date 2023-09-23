@@ -113,7 +113,7 @@
 
 {{#each categories}}
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener(“DOMContentLoaded”, function () {
         function fetchTasksForCategory(categoryId) {
             // Make an API call to fetch tasks for the specified category
             fetch(`http://localhost:3000/tasks/category/${categoryId}`)
@@ -126,8 +126,7 @@
                     console.error(`Error fetching tasks for category ${categoryId}: ${error}`);
                 });
         }
-
-        fetchTasksForCategory('{{this.id}}');
+        fetchTasksForCategory(‘{{this.id}}’);
     });
 </script>
 {{/each}}

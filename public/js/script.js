@@ -9,6 +9,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+const submitButton = document.querySelector('#task-modal button[type="submit"]');
+
+submitButton.addEventListener('click', function (event) {
+    event.preventDefault(); 
+
+    const title = document.querySelector('#title').value;
+    const description = document.querySelector('#description').value;
+    const dueDate = document.querySelector('#due-date').value;
+    const priority = document.querySelector('#priority').value;
+    const category = document.querySelector('#category').value;
+    const taskData = {
+        title,
+        description,
+        dueDate,
+        priority,
+        category,
+    };
+
+    fetch('http://localhost:3000/task', {
+        method: 'POST',
+        body: JSON.stringify(taskData),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(() => {
+            window.location.reload(); 
+        })
+        .catch(() => {
+            alert('Something went wrong :-(');
+        });
+});
+
+
+
+
+
 const addTaskButton = document.querySelector('.add-btn');
 const taskInput = document.querySelector('#task-input');
 const tasksContainer = document.querySelector('.tasks');
@@ -93,3 +130,54 @@ function handleEditTask(event) {
         taskTextElement.textContent = newTaskText;
     }
 }
+
+
+    function createTask() {
+            const taskEl = document.querySelector('#task-input')
+            const task = taskEl.value
+
+            const payload = {
+                title: task,
+                description: task,
+                dueDate: new Date(),
+                priority: "medium",
+                category: "{{metadata.name}}"
+            }
+
+            fetch('http://localhost:3000/task', {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(() => {
+                window.location.reload()
+            }).catch(() => {
+                alert("Something went wrong :-(")
+            })
+        }
+
+        function deleteTask(event) {
+            const id = event.target.parentNode.attributes.taskid.nodeValue
+            fetch(`http://localhost:3000/task/${id}`, {
+                method: "DELETE",
+            }).then(() => location.reload())
+
+            
+        }
+
+        function updateTotalTasksCount() {
+    const totalTasksElement = document.getElementById('total-task-count');
+    const taskElements = document.querySelectorAll('.task-wrapper');
+    totalTasksElement.textContent = taskElements.length;
+}
+updateTotalTasksCount();
+
+const taskCheckboxes = document.querySelectorAll('.task-wrapper input[type="checkbox"]');
+
+taskCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('click', handleTaskCheckboxClick);
+});
+
+function handleTaskCheckboxClick(event) {
+    const checkbox = event.target;}
