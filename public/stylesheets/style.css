@@ -13,6 +13,11 @@ body {
 
 }
 
+.back-btn img {
+  height: 2rem;
+  width: 2rem;
+}
+
 .wrapper{
   padding-left: 15vw;
   padding-right: 15vw;
@@ -212,7 +217,7 @@ body {
   margin: 0; 
 }
 
-/* Add this CSS to align only the newly added task text to the left */
+
 .new-task .task-text {
   align-self: flex-start;
 }
