@@ -98,7 +98,7 @@
         <img src="{{this.icon}}" alt="icon">
         <div class="content">
           <h1><a href="/categories/{{this.id}}">{{this.name}}</a></h1>
-          <p>Today you have <span class="total-tasks" id="total-tasks-{{this.id}}">0</span> tasks</p>
+          <p>Today you have <span class="total-tasks" id="total-task-count-{{this.id}}">0</span> tasks</p>
         </div>
       </div>
       <div class="options">
@@ -109,6 +109,7 @@
     </div>
   </div>
 </div>
+
 {{/each}}
 
 {{#each categories}}
@@ -129,4 +130,5 @@
         fetchTasksForCategory(‘{{this.id}}’);
     });
 </script>
+
 {{/each}}

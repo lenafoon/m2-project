@@ -1,11 +1,24 @@
 <h1>Challenges</h1>
-<ul>
-  {{#each challenges}}
-    <li>
-      <strong>Name:</strong> {{this.name}}<br>
-      <strong>Difficulty:</strong> {{this.difficulty}}<br>
-      <strong>Completed:</strong> {{#if this.completed}}Yes{{else}}No{{/if}}<br>
-      <a href="/challenges/{{name}}">View Details</a>
-    </li>
-  {{/each}}
-</ul>
+
+{{#each challenges}}
+<div class="categories-wrapper">
+  <div class="categories">
+    <div class="category">
+  <div class="left">
+    <img src="{{this.icon}}" alt="icon">
+    <div class="content">
+      <h1><a href="/challenge/{{this.name}}">{{this.name}}</a>
+</h1>
+    </div>
+  </div>
+  <div class="options">
+    <div class="toggle-btn">
+      <img src="/images/icons8-options-50.png" alt="option">
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+{{/each}}

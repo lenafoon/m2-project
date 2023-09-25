@@ -1,5 +1,5 @@
 
-  [{
+  const selfcare = [{
     "name": "Take a 30-minute bath or shower",
     "difficulty": "Medium",
     "completed": false
@@ -59,3 +59,7 @@
     "difficulty": "",
     "completed": false
   }]
+
+  module.exports = {
+    selfcare
+}

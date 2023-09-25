@@ -7,20 +7,24 @@ const { challenges } = require('../challenges-json');
 router.get('/challenges', async (req, res) => {
   try {
     const decluttering = await Challenge.find(); 
-    res.render('challenges', { decluttering, challenges,userInSession: req.session.currentUser}); 
+    res.render('challenges', { challenges,userInSession: req.session.currentUser}); 
   } catch (error) {
     res.status(500).json({ error: 'Error retrieving challenges' });
   }
 });
 
 
-// GET all decluttering challenge tasks
-router.get('/challenges/decluttering', async (req, res) => {
-  try {
-    res.render('challenge', { decluttering,userInSession: req.session.currentUser });
-  } catch (error) {
-    res.status(500).json({ error: 'Error retrieving challenge tasks' });
+// GET CHALLENGE PAGE
+router.get('/challenge/:challengeName', async (req, res) => {
+  const { challengeName } = req.params;
+
+  const challenge = challenges.find(challenge => challenge.name === challengeName);
+
+  if (!challenge) {
+    return res.status(404).json({ error: 'Challenge not found' });
   }
+
+  res.render('challenge', { challenge, userInSession: req.session.currentUser });
 });
 
 

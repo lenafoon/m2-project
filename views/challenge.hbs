@@ -1,10 +1,42 @@
-<h1>Decluttering Challenge Tasks</h1>
-<ul>
-  {{#each decluttering}}
-    <li>
-      <strong>Name:</strong> {{name}}<br>
-      <strong>Difficulty:</strong> {{difficulty}}<br>
-      <strong>Completed:</strong> {{#if completed}}Yes{{else}}No{{/if}}
-    </li>
-  {{/each}}
-</ul>
+<!-- challenge.hbs -->
+
+<div class="challenge-details">
+  <img src="{{challenge.icon}}" alt="Challenge Icon">
+  <h1>{{challenge.name}} Challenge</h1>
+</div>
+
+<!-- challenge.hbs -->
+
+<div class="category-screen">
+    <div class="tasks-wrapper">
+        <div class="tasks">
+            <div class="task-wrapper">
+                <label for="task-challenge" class="task">
+
+                    <input type="checkbox" name="" id="task-challenge">
+                    <span class="checkbox">
+                        <img src="{{challenge.icon}}" alt="">
+                    </span>
+                    <p class="task-text">{{challenge.name}}</p>
+
+                </label>
+            </div>
+            {{#each challenge.content}}
+            <div class="task-wrapper">
+                <label for="task-{{@index}}" class="task">
+
+                    <input type="checkbox" name="" id="task-{{@index}}">
+                    <span class="checkbox">
+                        <img src="/images/icons8-check-64.png" alt="">
+                    </span>
+                    <p class="task-text">{{this.name}} <!--- Difficulty: {{this.difficulty}}--></p>
+
+                </label>
+          
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<a href="/challenges">Back to Challenges</a>
