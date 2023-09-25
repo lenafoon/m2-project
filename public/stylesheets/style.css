@@ -47,29 +47,34 @@ body {
 }
 
 .categories-wrapper {
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding: 0 30px;
   padding-bottom: 10px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .categories {
-  padding-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem; 
 }
 
 .categories .category {
   background-color: cadetblue;
-  border-radius: 0.5rem;
-  padding: 1.5rem 1rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  padding: 1rem;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 10px 20px 5px #00000023;
   transition: all 0.3s;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .categories .category:hover {
@@ -77,15 +82,15 @@ body {
   box-shadow: 0 10px 20px 5px #00000040;
 }
 
-.category .left {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
+.category .icon {
+  margin-bottom: 0.5rem;
 }
 
-.category .left img {
+.category .icon img {
   width: 3rem;
+  height: 3rem;
 }
+
 .categories .category .content h1 a {
   color: black;
   text-decoration: none;
@@ -258,14 +263,14 @@ body {
 }
 
 .optionsTask {
-  position: absolute; /* Change this */
-  top: 0; /* Adjust positioning as needed */
+  position: absolute;
+  top: 0; 
   right: 0;
 }
 
 .optionsTask div {
-  display: inline-block; /* Apply inline-block to inner divs */
-  margin-right: 10px; /* Add margin between the inner divs if needed */
+  display: inline-block;
+  margin-right: 10px; 
 }
 
 

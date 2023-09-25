@@ -89,46 +89,41 @@
 </div>
 
 <!--CATEGORIES-->
-
-{{#each categories}}
 <div class="categories-wrapper">
   <div class="categories">
+    {{#each categories}}
     <div class="category">
-      <div class="left">
+      <div class="icon">
         <img src="{{this.icon}}" alt="icon">
         <div class="content">
           <h1><a href="/categories/{{this.id}}">{{this.name}}</a></h1>
-          <p>Today you have <span class="total-tasks" id="total-task-count-{{this.id}}">0</span> tasks</p>
+          <p><span class="total-tasks" id="total-task-count-{{this.id}}"></span> tasks</p>
         </div>
       </div>
-      <div class="options">
-        <div class="toggle-btn">
-          <img src="/images/icons8-options-50.png" alt="option">
-        </div>
-      </div>
+      
     </div>
+    {{/each}}
   </div>
 </div>
 
-{{/each}}
 
 {{#each categories}}
 <script>
-    document.addEventListener(“DOMContentLoaded”, function () {
+    document.addEventListener("DOMContentLoaded", function () {
         function fetchTasksForCategory(categoryId) {
             // Make an API call to fetch tasks for the specified category
             fetch(`http://localhost:3000/tasks/category/${categoryId}`)
                 .then(response => response.json())
                 .then(tasks => {
-                    const totalTasksElement = document.getElementById(`total-tasks-${categoryId}`);
+                    const totalTasksElement = document.getElementById(`total-task-count-${categoryId}`);
                     totalTasksElement.textContent = tasks.length;
                 })
                 .catch(error => {
                     console.error(`Error fetching tasks for category ${categoryId}: ${error}`);
                 });
         }
-        fetchTasksForCategory(‘{{this.id}}’);
+        
+        fetchTasksForCategory('{{this.id}}');
     });
 </script>
-
 {{/each}}

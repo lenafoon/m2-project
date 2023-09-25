@@ -1,8 +1,9 @@
 <!--CATEGORIES-->
 
-{{#each categories}}
+
 <div class="categories-wrapper">
   <div class="categories">
+    {{#each categories}}
     <div class="category">
       <div class="left">
         <img src="{{this.icon}}" alt="user">
@@ -17,7 +18,8 @@
         </div>
       </div>
     </div>
+    {{/each}}
   </div>
 </div>
-{{/each}}
+
 
