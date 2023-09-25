@@ -107,23 +107,3 @@
 </div>
 
 
-{{#each categories}}
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function fetchTasksForCategory(categoryId) {
-            // Make an API call to fetch tasks for the specified category
-            fetch(`http://localhost:3000/tasks/category/${categoryId}`)
-                .then(response => response.json())
-                .then(tasks => {
-                    const totalTasksElement = document.getElementById(`total-task-count-${categoryId}`);
-                    totalTasksElement.textContent = tasks.length;
-                })
-                .catch(error => {
-                    console.error(`Error fetching tasks for category ${categoryId}: ${error}`);
-                });
-        }
-        
-        fetchTasksForCategory('{{this.id}}');
-    });
-</script>
-{{/each}}

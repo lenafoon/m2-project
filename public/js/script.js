@@ -61,56 +61,26 @@ const categoryTaskCounts = {
     challenges: 0,
 };
 
-function initializeCategoryTaskCounts() {
-    document.querySelectorAll('.category-details').forEach(function (categoryDetail) {
-        const categoryName = categoryDetail.querySelector('h1').textContent.trim().toLowerCase();
-        const taskCount = categoryDetail.querySelectorAll('.task-wrapper').length;
-        categoryTaskCounts[categoryName] = taskCount;
-        updateCategoryTaskCount(categoryName);
-    });
-}
-//UPDATE NR OF TASKS IN CATEGORY
-
-function updateCategoryTaskCount(category) {
-    const totalTasksSpan = document.querySelector(`.${category} .total-tasks`);
-    if (totalTasksSpan) {
-        totalTasksSpan.textContent = categoryTaskCounts[category] + ' tasks';
-    }
-}
-
 function addTaskToCategory(category, taskText) {
+
     const newTaskElement = document.createElement('div');
     newTaskElement.classList.add('task-wrapper');
 
     categoryTaskCounts[category]++;
+
     updateCategoryTaskCount(category);
     updateTotalTaskCount();
 
 }
+
 function deleteTaskFromCategory(category) {
+
     categoryTaskCounts[category]--;
 
     updateCategoryTaskCount(category);
 
 }
 
-//UPDATE NR OF TASKS
-
-function updateTotalTaskCount() {
-    let totalTasks = 0;
-
-    for (const category in categoryTaskCounts) {
-        totalTasks += categoryTaskCounts[category];
-    }
-
-    const totalTasksSpan = document.getElementById('total-tasks');
-
-    if (totalTasksSpan) {
-        totalTasksSpan.textContent = totalTasks + ' tasks';
-    }
-}
-initializeCategoryTaskCounts();
-updateTotalTaskCount();
 
 //EDIT TASK
 const editButtons = document.querySelectorAll('.edit img');
@@ -131,8 +101,7 @@ function handleEditTask(event) {
     }
 }
 
-
-    function createTask() {
+function createTask() {
             const taskEl = document.querySelector('#task-input')
             const task = taskEl.value
 
@@ -157,7 +126,8 @@ function handleEditTask(event) {
             })
         }
 
-        function deleteTask(event) {
+
+function deleteTask(event) {
             const id = event.target.parentNode.attributes.taskid.nodeValue
             fetch(`http://localhost:3000/task/${id}`, {
                 method: "DELETE",
@@ -166,12 +136,6 @@ function handleEditTask(event) {
             
         }
 
-        function updateTotalTasksCount() {
-    const totalTasksElement = document.getElementById('total-task-count');
-    const taskElements = document.querySelectorAll('.task-wrapper');
-    totalTasksElement.textContent = taskElements.length;
-}
-updateTotalTasksCount();
 
 const taskCheckboxes = document.querySelectorAll('.task-wrapper input[type="checkbox"]');
 
@@ -179,5 +143,4 @@ taskCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('click', handleTaskCheckboxClick);
 });
 
-function handleTaskCheckboxClick(event) {
-    const checkbox = event.target;}
+
