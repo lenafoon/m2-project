@@ -42,22 +42,18 @@ submitButton.addEventListener('click', function (event) {
         });
 });
 
-
-
-
-
 const addTaskButton = document.querySelector('.add-btn');
 const taskInput = document.querySelector('#task-input');
 const tasksContainer = document.querySelector('.tasks');
 
 const categoryTaskCounts = {
-    education: 1,
-    finances: 1,
-    personal: 1,
-    home: 1,
-    work: 1,
-    shopping: 1,
-    health: 1,
+    education: 0,
+    finances: 0,
+    personal: 0,
+    home: 0,
+    work: 0,
+    shopping: 0,
+    health: 0,
     challenges: 0,
 };
 
