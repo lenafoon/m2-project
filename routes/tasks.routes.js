@@ -11,7 +11,7 @@ router.get('/tasks', (req, res) => {
 
   Task.find()
     .then(tasks => {
-      res.render('tasks', { tasks, isLoggedIn: true });
+      res.render('tasks', { tasks, isLoggedIn: true,userInSession: req.session.currentUser });
     })
     .catch(error => {
       console.error(`Error fetching tasks: ${error}`);
@@ -23,7 +23,7 @@ router.get('/tasks', (req, res) => {
 
 //TASK CREATION FORM
 router.get('/task', (req, res) => {
-  res.render('task');
+  res.render('task',{userInSession: req.session.currentUser});
 });
 
 // FORM SUBMISSION

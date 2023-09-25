@@ -16,7 +16,7 @@ router.get('/categories/:category', (req, res) => {
 
   Task.find({ category: metadata.name})
   .then(tasks => {
-    res.render('categoryView', { tasks, isLoggedIn: true, metadata });
+    res.render('categoryView', { tasks, isLoggedIn: true, metadata ,userInSession: req.session.currentUser});
   })
   .catch(error => {
     console.error(`Error fetching tasks: ${error}`);
@@ -29,7 +29,7 @@ router.get('/categories/:category', (req, res) => {
 router.get('/categories', (req, res) => {
     Task.find({ category: "categories"})
     .then(tasks => {
-      res.render('categories', { tasks, isLoggedIn: true, categories });
+      res.render('categories', { tasks, isLoggedIn: true, categories,userInSession: req.session.currentUser });
     })
     .catch(error => {
       console.error(`Error fetching tasks: ${error}`);
@@ -42,7 +42,7 @@ router.get('/categories', (req, res) => {
 router.get('/spoons', (req, res) => {
   Task.find({ category: "spoons"})
   .then(tasks => {
-    res.render('spoons', { tasks, isLoggedIn: true });
+    res.render('spoons', { tasks, isLoggedIn: true,userInSession: req.session.currentUser });
   })
   .catch(error => {
     console.error(`Error fetching tasks: ${error}`);

@@ -10,12 +10,14 @@
 
 body {
   padding: 50px;
-
+  background-image: url(kelly-sikkema-6aY-6B3MiZ4-unsplash.jpg);
+  /* background-color: #44b1b1e0; */
 }
 
 .back-btn img {
   height: 2rem;
   width: 2rem;
+
 }
 
 .wrapper{
@@ -58,12 +60,12 @@ body {
 }
 
 .categories .category {
-  background-color: #f3f3f1;
+  background-color: cadetblue;
   border-radius: 0.5rem;
   padding: 1.5rem 1rem;
   cursor: pointer;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   box-shadow: 0 10px 20px 5px #00000023;
   transition: all 0.3s;
