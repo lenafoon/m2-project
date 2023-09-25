@@ -6,13 +6,14 @@ require("./db");
 // generate the express app
 const express = require("express");
 const app = express();
+const authMiddleware=require("./middleware/route-guard").isAuthenticated
 
 // include the external configs and send the generated app
 require("./config")(app);
 require("./config/session.config")(app);
 
 // const { isLoggedIn, isLoggedOut } = require('./middleware/route-guard')
-
+app.use(authMiddleware)
 //ROUTES!
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);

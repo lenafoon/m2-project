@@ -1,3 +1,8 @@
+const isAuthenticated=(req, res, next) => {
+  res.locals.isAuthenticated = !!req.session.currentUser;
+  next();
+};
+
 //ISLOGGEDIN
 const isLoggedIn = (req, res, next) => {
   if (!req.session.currentUser) {
@@ -18,5 +23,6 @@ const isLoggedOut = (req, res, next) => {
 
 module.exports = {
   isLoggedIn,
-  isLoggedOut
+  isLoggedOut,
+  isAuthenticated
 };

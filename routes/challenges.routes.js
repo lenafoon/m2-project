@@ -7,7 +7,7 @@ const { challenges } = require('../challenges-json');
 router.get('/challenges', async (req, res) => {
   try {
     const decluttering = await Challenge.find(); 
-    res.render('challenges', { challenges,userInSession: req.session.currentUser}); 
+    res.render('challenges', { challenges}); 
   } catch (error) {
     res.status(500).json({ error: 'Error retrieving challenges' });
   }
@@ -24,7 +24,7 @@ router.get('/challenge/:challengeName', async (req, res) => {
     return res.status(404).json({ error: 'Challenge not found' });
   }
 
-  res.render('challenge', { challenge, userInSession: req.session.currentUser });
+  res.render('challenge', { challenge });
 });
 
 

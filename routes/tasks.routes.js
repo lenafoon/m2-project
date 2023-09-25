@@ -11,19 +11,19 @@ router.get('/tasks', (req, res) => {
 
   Task.find()
     .then(tasks => {
-      res.render('tasks', { tasks, isLoggedIn: true,userInSession: req.session.currentUser });
+      res.render('tasks', { tasks, isLoggedIn: true });
     })
     .catch(error => {
       console.error(`Error fetching tasks: ${error}`);
       res.status(500).send('Internal Server Error');
     });
-  // }
+  
 });
 
 
 //TASK CREATION FORM
 router.get('/task', (req, res) => {
-  res.render('task',{userInSession: req.session.currentUser});
+  res.render('task',);
 });
 
 // FORM SUBMISSION

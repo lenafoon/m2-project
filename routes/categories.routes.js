@@ -1,12 +1,15 @@
 const router = require('express').Router();
 const { categories } = require('../public/js/categories');
 const Task = require('./../models/Task.model')
-
+const {
+  isLoggedIn,
+  isLoggedOut
+} = require('../middleware/route-guard')
 
 //GET
 
 
-router.get('/categories/:category', (req, res) => {
+router.get('/categories/:category', isLoggedIn,(req, res) => {
   const metadata = categories.find(c => c.id === req.params.category)
 
   if (!metadata) {
@@ -16,7 +19,7 @@ router.get('/categories/:category', (req, res) => {
 
   Task.find({ category: metadata.name})
   .then(tasks => {
-    res.render('categoryView', { tasks, isLoggedIn: true, metadata ,userInSession: req.session.currentUser});
+    res.render('categoryView', { tasks, isLoggedIn: true, metadata });
   })
   .catch(error => {
     console.error(`Error fetching tasks: ${error}`);
@@ -26,10 +29,10 @@ router.get('/categories/:category', (req, res) => {
 })
 
 
-router.get('/categories', (req, res) => {
+router.get('/categories', isLoggedIn, (req, res) => {
     Task.find({ category: "categories"})
     .then(tasks => {
-      res.render('categories', { tasks, isLoggedIn: true, categories,userInSession: req.session.currentUser });
+      res.render('categories', { tasks, isLoggedIn: true, categories });
     })
     .catch(error => {
       console.error(`Error fetching tasks: ${error}`);
@@ -39,10 +42,10 @@ router.get('/categories', (req, res) => {
 
 
 
-router.get('/spoons', (req, res) => {
+router.get('/spoons', isLoggedIn, (req, res) => {
   Task.find({ category: "spoons"})
   .then(tasks => {
-    res.render('spoons', { tasks, isLoggedIn: true,userInSession: req.session.currentUser });
+    res.render('spoons', { tasks, isLoggedIn: true });
   })
   .catch(error => {
     console.error(`Error fetching tasks: ${error}`);
