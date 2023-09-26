@@ -15,7 +15,7 @@
         <div class="details">
             
             <h1>{{metadata.name}}</h1>
-            <p><span class="total-tasks" id="total-task-count">0</span> tasks</p>
+            <p><span class="total-tasks">0</span> tasks</p>
         </div>
     </div>
 
@@ -127,7 +127,7 @@
 
 
 <script>
-    function createTask() {
+function createTask() {
             const taskEl = document.querySelector('#task-input')
             const task = taskEl.value
 
@@ -152,7 +152,7 @@
             })
         }
 
-        function deleteTask(event) {
+function deleteTask(event) {
             const id = event.target.parentNode.attributes.taskid.nodeValue
             fetch(`http://localhost:3000/task/${id}`, {
                 method: "DELETE",
@@ -160,13 +160,6 @@
 
             
         }
-
-        function updateTotalTasksCount() {
-    const totalTasksElement = document.getElementById('total-task-count');
-    const taskElements = document.querySelectorAll('.task-wrapper');
-    totalTasksElement.textContent = taskElements.length;
-}
-updateTotalTasksCount();
 
 function toggleEdit(editButton) {
     const taskLabel = editButton.closest('.task');
@@ -186,5 +179,17 @@ function toggleEdit(editButton) {
         taskText.textContent = editInput.value;
     }
 }
+
+ function updateTotalTasksCount() {
+        const totalTasksElement = document.querySelector('.total-tasks');
+        const taskElements = document.querySelectorAll('.task-wrapper');
+
+        // Set the total tasks count for the current category
+        totalTasksElement.textContent = taskElements.length;
+    }
+
+    // Call the updateTotalTasksCount function when the page loads
+    window.addEventListener('load', updateTotalTasksCount);
+
 
 </script>
