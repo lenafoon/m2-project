@@ -140,3 +140,95 @@ taskCheckboxes.forEach((checkbox) => {
 });
 
 
+//ANALYTICS
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    initializeCharts();
+  });
+  
+  function initializeCharts() {
+
+    const Chart = require('chart.js');
+
+    const { categories } = require('./categories');
+
+    const { decluttering } = require('/challenges-json/decluttering-challenge');
+    
+    const categoriesData = categories.map(category => category.name);
+
+    const tasksPerCategory = countTasksPerCategory(categories, decluttering);
+    
+    createCategoryChart('categoryChart', categoriesData, tasksPerCategory);
+    
+    const declutteringData = decluttering.map(challenge => challenge.name);
+
+    const completionStatus = decluttering.map(challenge => challenge.completed ? 1 : 0);
+    
+    createCompletionChart('completionChart', declutteringData, completionStatus);
+  }
+  
+
+  function countTasksPerCategory(categories, tasks) {
+
+    const tasksPerCategory = new Array(categories.length).fill(0);
+
+    for (const task of tasks) {
+      const categoryIndex = categories.findIndex(category => category.id === task.category);
+
+      if (categoryIndex !== -1) {
+        tasksPerCategory[categoryIndex]++;
+      }
+    }
+    return tasksPerCategory;
+  }
+  
+
+  function createCategoryChart(canvasId, labels, data) {
+
+    const ctx = document.getElementById(canvasId).getContext('2d');
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: data,
+          backgroundColor: ['red', 'blue', 'green', 'orange', 'purple', 'pink', 'yellow', 'brown'],
+        }],
+      },
+    });
+  }
+  
+
+  function createCompletionChart(canvasId, labels, data) {
+
+    const ctx = document.getElementById(canvasId).getContext('2d');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Completion Status',
+          data: data,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+        }],
+      },
+      
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 1,
+            ticks: {
+              stepSize: 1,
+            },
+          },
+        },
+      },
+    });
+  }
+  
