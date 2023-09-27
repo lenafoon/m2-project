@@ -1,5 +1,11 @@
 {{#if userInSession}}
 
+<div class="back-btn">
+          <a href="/" class="back-btn">
+            <img src="/images/icons8-back-64.png" alt="Back" />
+          </a>
+        </div>
+
 <section>
   <div class="wrapper">
     <div class="welcome">
@@ -8,6 +14,62 @@
        
       </div>
     </div>
+
+
+    <div class="category-screen">
+    <div class="head-wrapper">
+        
+       <div class="options">
+                   
+       </div>
+    </div>
+    <div class="category-details">
+        <img src="/images/icons8-inspection-64.png" alt="" id="list">
+        <div class="details">
+            <h3>My Tasks:</h3>
+        </div>
+    </div>
+
+
+<ul class="list-group">
+  {{#each tasks}}
+    <li class="list-group-item">
+      <div class="task">
+        <label for="task" class="task-label">
+          <input type="checkbox" name="" id="task">
+          <span class="checkbox">
+            <img src="/images/icons8-check-64.png" alt="">
+          </span>
+          <div class="task-info">
+            <div class="title">
+              <p class="task-text">{{title}}</p>
+            </div>
+            <div class="additional-info">
+              {{#if description}}
+                <p><strong>Description:</strong> {{description}}</p>
+              {{/if}}
+              {{#if dueDate}}
+                <p><strong>Due Date:</strong> {{dueDate}}</p>
+              {{/if}}
+              {{#if priority}}
+                <p><strong>Priority:</strong> {{priority}}</p>
+              {{/if}}
+              {{#if category}}
+                <p><strong>Category:</strong> {{category}}</p>
+              {{/if}}
+              <ul class="list-group checklist">
+                {{#each checklist}}
+                  <li class="list-group-item">{{item}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </label>
+      </div>
+    </li>
+  {{/each}}
+</ul>
+
 
 
 
