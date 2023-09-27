@@ -1,6 +1,12 @@
 <!--index.hbs-->
 
 <div class="wrapper show-category">
+  <div class="welcome">
+  <div class="content">
+    <h1>Hello {{userInSession.username}},</h1>
+    <!--remember task counter-->
+  </div>
+
   <div class="screen-backdrop">
     <div class="screen home-screen">
       <div class="head-wrapper">
@@ -12,11 +18,6 @@
   </div>
 </div>
 
-<div class="welcome">
-  <div class="content">
-    <h1>Hello {{userInSession.username}},</h1>
-    <!--remember task counter-->
-  </div>
 
   <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
      <img src="/images/icons8-plus-50.png" alt="">

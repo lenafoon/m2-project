@@ -1,3 +1,5 @@
+//tasks.routes.js
+
 const express = require('express');
 const router = require('express').Router();
 const Task = require('../models/Task.model');
@@ -68,5 +70,25 @@ router.delete('/task/:taskId', (req, res) => {
 
 });
 
+
+//PATCH
+
+
+router.patch('/task/:taskId', (req, res) => {
+  const { taskId } = req.params;
+  const { title } = req.body;
+
+  Task.findByIdAndUpdate(taskId, { title }, { new: true })
+      .then(updatedTask => {
+          if (!updatedTask) {
+              return res.status(404).json({ message: 'Task not found.' });
+          }
+          res.json(updatedTask);
+      })
+      .catch(error => {
+          console.error(`Error updating task: ${error}`);
+          res.status(500).json({ message: 'Internal Server Error' });
+      });
+});
 
 module.exports = router;

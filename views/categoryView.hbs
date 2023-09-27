@@ -23,7 +23,7 @@
         <div class="tasks-wrapper">
             <div class="tasks">
                 {{#each tasks}}
-                <div class="task-wrapper">
+                <div class="task-wrapper" data-task-id="{{_id}}">
                     <label for="task-{{_id}}" class="task">
 
                         <input type="checkbox" name="" id="task-{{_id}}">
@@ -165,31 +165,65 @@ function toggleEdit(editButton) {
     const taskLabel = editButton.closest('.task');
     const taskText = taskLabel.querySelector('.task-text');
     const editInput = taskLabel.querySelector('.edit-input');
+     const taskId = taskLabel.querySelector('input[type="checkbox"]').id.split('-')[1];
 
     if (editInput.style.display === 'none' || editInput.style.display === '') {
-        // Show the edit input field and hide the task text
+        
         editInput.style.display = 'block';
         taskText.style.display = 'none';
-    } else {
-        // Hide the edit input field and show the task text
+    } 
+    else {
+        
         editInput.style.display = 'none';
         taskText.style.display = 'block';
 
-        // Update the task text with the new value from the input field
-        taskText.textContent = editInput.value;
+        const updatedText = editInput.value;
+
+        updateTaskText(taskId, updatedText)
+            .then(() => {
+                
+                taskText.textContent = updatedText;
+            })
+            .catch((error) => {
+                
+                console.error(error);
+            });
     }
 }
+
+function updateTaskText(taskId, updatedText) {
+    return fetch(`/task/${taskId}`, {
+        method: "PATCH",
+        body: JSON.stringify({ title: updatedText }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Failed to update task text');
+        }
+    });
+}
+function initializeTaskEditing() {
+        const editButtons = document.querySelectorAll('.edit');
+
+        editButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+                toggleEdit(event.target);
+            });
+        });
+    }
 
  function updateTotalTasksCount() {
         const totalTasksElement = document.querySelector('.total-tasks');
         const taskElements = document.querySelectorAll('.task-wrapper');
 
-        // Set the total tasks count for the current category
         totalTasksElement.textContent = taskElements.length;
     }
-
-    // Call the updateTotalTasksCount function when the page loads
-    window.addEventListener('load', updateTotalTasksCount);
+      window.addEventListener('load', updateTotalTasksCount, initializeTaskEditing, updateTaskText);
 
 
 </script>
