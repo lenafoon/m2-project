@@ -167,8 +167,8 @@ body {
 }
 
 .category-details {
-  padding: 0 30px;
-  margin-top: 7rem;
+  
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -462,3 +462,32 @@ button.add-btn {
   transform: scale(1.2); 
 }
 
+
+
+
+.book-search-field{
+  border: #666;
+  border-radius: 15%;
+  box-shadow: #2e2e2e;
+}
+
+#searchInput {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc; /* Input border color */
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  padding: 10px 15px;
+  background-color:gray;
+  color: #fff; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.reading-list {
+  margin-top: 50px;
+}
