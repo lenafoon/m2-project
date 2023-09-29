@@ -17,15 +17,10 @@
         <div class="tasks">
             <div class="task-wrapper">
                 <label for="task-challenge" class="task">
-
                     <input type="checkbox" name="" id="task-challenge">
-                    <span class="checkbox">
-                        <img src="{{challenge.icon}}" alt="">
-                    </span>
-                    <p class="task-text">{{challenge.name}}</p>
-
                 </label>
             </div>
+
             {{#each challenge.content}}
             <div class="task-wrapper">
                 <label for="task-{{@index}}" class="task">
@@ -35,6 +30,7 @@
                         <img src="/images/icons8-check-64.png" alt="">
                     </span>
                     <p class="task-text">{{this.name}} <!--- Difficulty: {{this.difficulty}}--></p>
+                  
 
                 </label>
           

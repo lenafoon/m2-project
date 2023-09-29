@@ -33,6 +33,9 @@ app.use('/', challengeRoutes);
 const spoonRoutes = require('./routes/categories.routes');
 app.use('/', spoonRoutes);
 
+const booksRoutes = require('./routes/books.routes');
+app.use('/', booksRoutes);
+
 require("./error-handling")(app);
 
 module.exports = app;

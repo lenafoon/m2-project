@@ -1,28 +1,23 @@
 <!--categoryView.hbs-->
 <div class="category-screen">
-    <div class="head-wrapper">
-        <div class="back-btn">
-             <a href="/" class="back-btn">
-            <img src="/images/icons8-back-64.png" alt="Back" />
-          </a>
-        </div>
-        <div class="options">
-        </div>
+    <div class="back-btn">
+      <a href="/" class="back-btn">
+      <img src="/images/icons8-back-64.png" alt="Back" />
+      </a>
     </div>
 
     <div class="category-details">
         <img src="{{metadata.icon}}" alt="" id="category-img">
         <div class="details">
-            
             <h1>{{metadata.name}}</h1>
             <p><span class="total-tasks">0</span> tasks</p>
         </div>
     </div>
 
-    <div class="category-screen">
-        <div class="tasks-wrapper">
-            <div class="tasks">
-                {{#each tasks}}
+
+    <div class="tasks-wrapper">
+        <div class="tasks">
+            {{#each tasks}}
                 <div class="task-wrapper" data-task-id="{{_id}}">
                     <label for="task-{{_id}}" class="task">
 
@@ -33,197 +28,78 @@
                         <p class="task-text">{{title}}</p>
                          <input type="text" class="edit-input" style="display: none;" value="{{title}}">
                     </label>
+
                     <div class="optionsTask">
+                       <div class="edit">
+                         <img src="/images/icons8-edit-64.png" alt="edit">
+                       </div>
 
-                        <div class="spoon">
-                        <img src="/images/icons8-teaspoon-50.png" alt="spoon">
-                    </div>
-
-                    <div class="edit">
-                        <img src="/images/icons8-edit-64.png" alt="edit" onclick="toggleEdit(this)">
-                    </div>
-                    <div class="delete" taskId="{{_id}}" onclick="deleteTask(event)">
-                        <img src="/images/icons8-trash-64.png" alt="trash">
-                    </div>
-
-                    </div>
-
-                    
+                       <div class="delete" taskId="{{_id}}" onclick="deleteTask(event)">
+                         <img src="/images/icons8-trash-64.png" alt="trash">
+                       </div>
+                    </div>        
                 </div>
-                {{/each}}
-            </div>
+            {{/each}}
         </div>
+   </div>
 
         <!--ADD TASK BUTTON-->
 
-       <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
-          <img src="/images/icons8-plus-50.png" alt="">
-       </button>
+   <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
+     <img src="/images/icons8-plus-50.png" alt="">
+   </button>
 
         <!--ADD TASK FORM-->
-     <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="taskModalLabel">Create a New Task</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="task-form" method="POST" action="/">
-          <div class="mb-3">
-            <label for="title" class="form-label">Title:</label>
-            <input type="text" id="title" name="title" class="form-control" required>
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" id="use-checklist" name="use-checklist" class="form-check-input">
-            <label class="form-check-label" for="use-checklist">Use Checklist</label>
-          </div>
-
-          <div class="collapse" id="checklist-items-collapse">
+  <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="taskModalLabel">Create a New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       
+       <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
             <div class="mb-3">
-              <label for="checklist" class="form-label">Checklist:</label>
-              <div id="checklist-items">
-                <!-- Checklist items here -->
-              </div>
-              <input type="text" id="new-checklist-item" class="form-control" placeholder="Add an item">
-              <button type="button" id="add-checklist-item" class="btn btn-sm btn-primary">Add Item</button>
+              <label for="title" class="form-label">Title:</label>
+              <input type="text" id="title" name="title" class="form-control" required>
             </div>
+
+            <div class="mb-3" id="description-container">
+              <label for="description" class="form-label">Description:</label>
+              <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="due-date" class="form-label">Due Date:</label>
+              <input type="date" id="due-date" name="due-date" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label for="priority" class="form-label">Priority:</label>
+              <select id="priority" name="priority" class="form-select">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
           </div>
 
-          <div class="mb-3" id="description-container">
-            <label for="description" class="form-label">Description:</label>
-            <textarea id="description" name="description" class="form-control" rows="4"></textarea>
-          </div>
           <div class="mb-3">
-            <label for="due-date" class="form-label">Due Date:</label>
-            <input type="date" id="due-date" name="due-date" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="priority" class="form-label">Priority:</label>
-            <select id="priority" name="priority" class="form-select">
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="category" class="form-label">Category Tag:</label>
-            <select id="category" name="category" class="form-select">
-              <option value="Personal">Personal</option>
-              <option value="Health">Health</option>
-              <option value="Work">Work</option>
-              <option value="Home">Home</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Education">Education</option>
-              <option value="Finances">Finances</option>
-            </select>
-          </div>
+             <label for="category" class="form-label">Category Tag:</label>
+             <select id="category" name="category" class="form-select">
+                <option value="Personal">Personal</option>
+                <option value="Health">Health</option>
+                <option value="Work">Work</option>
+                <option value="Home">Home</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Education">Education</option>
+                <option value="Finances">Finances</option>
+             </select>
+           </div>
+
           <button type="submit" class="btn btn-primary">Create Task</button>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-
-<script>
-function createTask() {
-            const taskEl = document.querySelector('#task-input')
-            const task = taskEl.value
-
-            const payload = {
-                title: task,
-                description: task,
-                dueDate: new Date(),
-                priority: "medium",
-                category: "{{metadata.name}}"
-            }
-
-            fetch('http://localhost:3000/task', {
-                method: "POST",
-                body: JSON.stringify(payload),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(() => {
-                window.location.reload()
-            }).catch(() => {
-                alert("Something went wrong :-(")
-            })
-        }
-
-function deleteTask(event) {
-            const id = event.target.parentNode.attributes.taskid.nodeValue
-            fetch(`http://localhost:3000/task/${id}`, {
-                method: "DELETE",
-            }).then(() => location.reload())
-
-            
-        }
-
-function toggleEdit(editButton) {
-    const taskLabel = editButton.closest('.task');
-    const taskText = taskLabel.querySelector('.task-text');
-    const editInput = taskLabel.querySelector('.edit-input');
-     const taskId = taskLabel.querySelector('input[type="checkbox"]').id.split('-')[1];
-
-    if (editInput.style.display === 'none' || editInput.style.display === '') {
-        
-        editInput.style.display = 'block';
-        taskText.style.display = 'none';
-    } 
-    else {
-        
-        editInput.style.display = 'none';
-        taskText.style.display = 'block';
-
-        const updatedText = editInput.value;
-
-        updateTaskText(taskId, updatedText)
-            .then(() => {
-                
-                taskText.textContent = updatedText;
-            })
-            .catch((error) => {
-                
-                console.error(error);
-            });
-    }
-}
-
-function updateTaskText(taskId, updatedText) {
-    return fetch(`/task/${taskId}`, {
-        method: "PATCH",
-        body: JSON.stringify({ title: updatedText }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Failed to update task text');
-        }
-    });
-}
-function initializeTaskEditing() {
-        const editButtons = document.querySelectorAll('.edit');
-
-        editButtons.forEach((button) => {
-            button.addEventListener('click', (event) => {
-                toggleEdit(event.target);
-            });
-        });
-    }
-
- function updateTotalTasksCount() {
-        const totalTasksElement = document.querySelector('.total-tasks');
-        const taskElements = document.querySelectorAll('.task-wrapper');
-
-        totalTasksElement.textContent = taskElements.length;
-    }
-      window.addEventListener('load', updateTotalTasksCount, initializeTaskEditing, updateTaskText);
-
-
-</script>

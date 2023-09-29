@@ -9,7 +9,6 @@ const Task = require('../models/Task.model');
 //TASK LIST
 router.get('/tasks', (req, res) => {
 
-  const { wordToSearch } = req.query
 
   Task.find()
     .then(tasks => {

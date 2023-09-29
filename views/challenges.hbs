@@ -1,20 +1,15 @@
 <h1>Challenges</h1>
 
 {{#each challenges}}
-<div class="categories-wrapper">
-  <div class="categories">
-    <div class="category">
-  <div class="left">
-    <img src="{{this.icon}}" alt="icon">
-    <div class="content">
-      <h1><a href="/challenge/{{this.name}}">{{this.name}}</a>
-</h1>
+  <div class="categories-wrapper">
+    <div class="categories">
+      <div class="category">
+        <img src="{{this.icon}}" alt="icon">
+
+        <div class="content">
+          <h1><a href="/challenge/{{this.name}}">{{this.name}}</a></h1>
+        </div>
+      </div>
     </div>
   </div>
-
-</div>
-
-  </div>
-</div>
-
 {{/each}}

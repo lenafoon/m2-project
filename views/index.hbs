@@ -3,21 +3,11 @@
 <div class="wrapper show-category">
   <div class="welcome">
   <div class="content">
+    {{#if userInSession}}
     <h1>Hello {{userInSession.username}},</h1>
     <!--remember task counter-->
+    {{/if}}
   </div>
-
-  <div class="screen-backdrop">
-    <div class="screen home-screen">
-      <div class="head-wrapper">
-        <div class="menu-btn">
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
   <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
      <img src="/images/icons8-plus-50.png" alt="">
@@ -32,36 +22,24 @@
         <h5 class="modal-title" id="taskModalLabel">Create a New Task</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body">
         <form id="task-form" method="POST" action="/">
           <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
             <input type="text" id="title" name="title" class="form-control" required>
           </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" id="use-checklist" name="use-checklist" class="form-check-input">
-            <label class="form-check-label" for="use-checklist">Use Checklist</label>
-          </div>
-
-          <div class="collapse" id="checklist-items-collapse">
-            <div class="mb-3">
-              <label for="checklist" class="form-label">Checklist:</label>
-              <div id="checklist-items">
-                <!-- Checklist items here -->
-              </div>
-              <input type="text" id="new-checklist-item" class="form-control" placeholder="Add an item">
-              <button type="button" id="add-checklist-item" class="btn btn-sm btn-primary">Add Item</button>
-            </div>
-          </div>
-
+         
           <div class="mb-3" id="description-container">
             <label for="description" class="form-label">Description:</label>
             <textarea id="description" name="description" class="form-control" rows="4"></textarea>
           </div>
+
           <div class="mb-3">
             <label for="due-date" class="form-label">Due Date:</label>
             <input type="date" id="due-date" name="due-date" class="form-control">
           </div>
+
           <div class="mb-3">
             <label for="priority" class="form-label">Priority:</label>
             <select id="priority" name="priority" class="form-select">
@@ -70,6 +48,7 @@
               <option value="low">Low</option>
             </select>
           </div>
+
           <div class="mb-3">
             <label for="category" class="form-label">Category Tag:</label>
             <select id="category" name="category" class="form-select">
@@ -100,7 +79,7 @@
           <h1><a href="/categories/{{this.id}}">{{this.name}}</a></h1>
           {{#if this.isLoggedIn}}
                   <p><span class="total-tasks" id="total-task-count-{{this.id}}"></span>{{this.length}} tasks</p>
-{{/if}}
+          {{/if}}
         </div>
       </div>
       

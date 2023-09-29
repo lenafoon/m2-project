@@ -24,11 +24,6 @@ const categories = [
         name: 'Health',
         icon: '/images/icons8-health-64.png'
     },
-    //{
-       // id: 'challenges',
-        //name: 'Challenges',
-       // icon: '/images/icons8-medal-64.png'
-    //},
     {
         id: 'education',
         name: 'Education',
@@ -39,11 +34,6 @@ const categories = [
         name: 'Finances',
         icon: '/images/icons8-money-bag-64.png'
     },
-    {
-        id: 'spoons',
-        name: 'Spoons',
-        icon: '/images/icons8-teaspoon-50.png'
-   },
 
 ]
 
