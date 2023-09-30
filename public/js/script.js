@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (addButton) {
         addButton.addEventListener("click", showTaskSelectionPrompt);
     }
-    initializeTaskEditing();
 });
 
 
@@ -106,8 +105,6 @@ function createTask() {
             })
         }
 
-
-
        
 function deleteTask(event) {
             const id = event.target.parentNode.attributes.taskid.nodeValue
@@ -122,68 +119,20 @@ function deleteTask(event) {
         
 
 
-function initializeTaskEditing() {
-    console.log('Initializing task editing...');
-        const editButtons = document.querySelectorAll('.edit');
-
-        editButtons.forEach((button) => {
-            button.addEventListener('click', (event) => {
-                const taskWrapper = event.target.closest('.task-wrapper');
-                const taskTextElement = taskWrapper.querySelector('.task-text');
-                const editInput = taskWrapper.querySelector('.edit-input') ;
-
-                if (taskTextElement.style.display === 'none') {
-                    taskTextElement.style.display = 'inline';
-                    editInput.style.display = 'none';
-                } 
-                else {
-                    taskTextElement.style.display = 'none';
-                    editInput.style.display = 'inline';
-
-                    editInput.addEventListener('blur', () => {
-                        const taskId = taskWrapper.dataset.taskId;
-                        const updatedText = editInput.value;
-
-                        updateTaskText(taskId, updatedText)
-                    .then(() => {
-                      
-                        taskTextElement.textContent = updatedText;
-                    })
-                    .catch((error) => {
-                        console.error('Error updating task text:', error);
-                    });
-            });
-                }
-            });
-        });
-    }
-
- function updateTotalTasksCount() {
-        const totalTasksElement = document.querySelector('.total-tasks');
-        const taskElements = document.querySelectorAll('.task-wrapper');
-
-        totalTasksElement.textContent = taskElements.length;
-    }
-      window.addEventListener('load', updateTotalTasksCount, initializeTaskEditing);
-
-
-
-
-
       //books
       document.addEventListener('DOMContentLoaded', function () {
-        apiKey = 'b5f76033c4f3efe676c3ece7202def13c70f907c';
+        apiKey = 'GOOGLE_BOOKS_API_KEY';
 
     const apiUrl = 'https://www.googleapis.com/books/v1/volumes';
     
     const searchForm = document.querySelector('#searchForm');
-    const searchInput = document.getElementById('searchInput');
+    const searchInput = document.getElementById('booksSearchInput');
     const searchResults = document.getElementById('searchResults');
     const readingList = document.getElementById('readingList');
 
     searchForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const searchTerm = searchInput.value;
+        const searchTerm = booksSearchInput.value;
         searchBooks(searchTerm);
     });
 

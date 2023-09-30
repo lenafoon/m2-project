@@ -10,38 +10,40 @@
         <img src="{{metadata.icon}}" alt="" id="category-img">
         <div class="details">
             <h1>{{metadata.name}}</h1>
-            <p><span class="total-tasks">0</span> tasks</p>
+            <p><span class="total-tasks">{{tasks.length}}</span> tasks</p>
         </div>
     </div>
 
 
-    <div class="tasks-wrapper">
-        <div class="tasks">
-            {{#each tasks}}
-                <div class="task-wrapper" data-task-id="{{_id}}">
-                    <label for="task-{{_id}}" class="task">
-
-                        <input type="checkbox" name="" id="task-{{_id}}">
-                        <span class="checkbox">
-                            <img src="/images/icons8-check-64.png" alt="">
-                        </span>
-                        <p class="task-text">{{title}}</p>
-                         <input type="text" class="edit-input" style="display: none;" value="{{title}}">
-                    </label>
-
-                    <div class="optionsTask">
-                       <div class="edit">
-                         <img src="/images/icons8-edit-64.png" alt="edit">
-                       </div>
-
-                       <div class="delete" taskId="{{_id}}" onclick="deleteTask(event)">
-                         <img src="/images/icons8-trash-64.png" alt="trash">
-                       </div>
-                    </div>        
-                </div>
-            {{/each}}
+    <div class="x-tasks">
+    {{#each tasks}}
+    <div class="x-task" data-id="{{_id}}" data-checked="{{completed}}">
+      <div class="x-row">
+        <span class="checkbox">
+          <img src="/images/icons8-check-64.png" onclick="toggleTaskCompletion(event)" taskId="{{_id}}" alt="">
+        </span>
+        <input type="text" value="{{title}}" taskId="{{_id}}" onblur="updateTaskTitle(event)"></input>
+        <div class="x-delete" taskId="{{_id}}" onclick="deleteTask(event)">
+          <img src="/images/icons8-trash-64.png" alt="trash">
         </div>
-   </div>
+      </div>
+      <div class="x-details">
+        {{#if description}}
+        <p>Description: {{description}}</p>
+        {{/if}}
+        {{#if dueDate}}
+        <p>Due Date: {{dueDate}}</p>
+        {{/if}}
+        {{#if priority}}
+        <p>Priority: {{priority}}</p>
+        {{/if}}
+        {{#if category}}
+        <p>Category: {{category}}</p>
+        {{/if}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
 
         <!--ADD TASK BUTTON-->
 
@@ -103,3 +105,41 @@
     </div>
   </div>
 </div>
+
+<script>
+    function updateTaskTitle(event) {
+      const id = event.target.attributes.taskid.nodeValue
+      const title = event.target.value
+      const payload = { title }
+
+      fetch(`/task/${id}`, {
+        headers: {
+          'Content-Type': "application/json"
+        },
+        method: "PATCH",
+        body: JSON.stringify(payload)
+      }).then(() => location.reload())
+    }
+
+    function toggleTaskCompletion(event) {
+      const id = event.target.attributes.taskid.nodeValue
+      const task = document.querySelector(`.x-task[data-id="${id}"]`)
+      // Toggle our completed label accordingly
+      let completed = task.attributes['data-checked'].nodeValue
+      completed = completed === "false" ? "true" : "false"
+
+      const payload = { completed }
+
+      fetch(`/task/${id}`, {
+        headers: {
+          'Content-Type': "application/json"
+        },
+        method: "PATCH",
+        body: JSON.stringify(payload)
+      }).then(r => r.json()).then((r) => {
+        // Update the task accordingly. 
+        task.attributes['data-checked'].nodeValue = r.completed
+      })
+    }
+
+  </script>

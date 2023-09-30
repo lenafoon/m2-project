@@ -75,9 +75,9 @@ router.delete('/task/:taskId', (req, res) => {
 
 router.patch('/task/:taskId', (req, res) => {
   const { taskId } = req.params;
-  const { title } = req.body;
 
-  Task.findByIdAndUpdate(taskId, { title }, { new: true })
+  console.log(taskId, req.body)
+  Task.findByIdAndUpdate(taskId, req.body, { new: true })
       .then(updatedTask => {
           if (!updatedTask) {
               return res.status(404).json({ message: 'Task not found.' });
@@ -89,5 +89,7 @@ router.patch('/task/:taskId', (req, res) => {
           res.status(500).json({ message: 'Internal Server Error' });
       });
 });
+
+
 
 module.exports = router;

@@ -5,15 +5,10 @@ const taskSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  checklist: [{
-    item: {
-      type: String,
-    },
     completed: {
       type: Boolean,
       default: false,
     },
-  }],
   description: {
     type: String,
   },
