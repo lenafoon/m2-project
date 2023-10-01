@@ -22,8 +22,10 @@
         <span class="checkbox">
           <img src="/images/icons8-check-64.png" onclick="toggleTaskCompletion(event)" taskId="{{_id}}" alt="">
         </span>
-        <input type="text" value="{{title}}" taskId="{{_id}}" onblur="updateTaskTitle(event)"></input>
         <div id="TitleErrormessage" style="display:none">title is mandatory</div>
+
+        <input type="text" value="{{title}}" taskId="{{_id}}" onblur="updateTaskTitle(event)"></input>
+        
         <div class="x-delete" taskId="{{_id}}" onclick="deleteTask(event)">
 
       
@@ -31,18 +33,45 @@
         </div>
       </div>
       <div class="x-details">
+
         {{#if description}}
-        <p>Description: {{description}}</p>
+        <p><strong>Description: </strong>
+        <br>
+        <input type="text" value="{{description}}" taskId="{{_id}}" onblur="updateTaskDetails(event)"></p>
         {{/if}}
+
         {{#if dueDate}}
-        <p>Due Date: {{dueDate}}</p>
+        <p> <strong>Due Date: </strong>
+        <br>
+        {{dueDate}} 
+        <br>
+        <input type="date"  taskId="{{_id}}" onblur="updateTaskDueDate(event)"></p>
         {{/if}}
+
         {{#if priority}}
-        <p>Priority: {{priority}}</p>
+        <p><strong>Priority: </strong>{{priority}} 
+              <select taskId="{{_id}}" name="priority" class="form-select" onblur="updateTaskPriority(event)">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+        </p>
         {{/if}}
+
         {{#if category}}
-        <p>Category: {{category}}</p>
+        <p><strong>Category: </strong>{{category}}
+          <select taskId="{{_id}}" name="{{category}}" class="form-select" onblur="updateTaskCategory(event)">
+           <option value="Personal">Personal</option>
+           <option value="Health">Health</option>
+           <option value="Work">Work</option>
+           <option value="Home">Home</option>
+           <option value="Shopping">Shopping</option>
+           <option value="Education">Education</option>
+           <option value="Finances">Finances</option>
+          </select>
+        </p>
         {{/if}}
+
       </div>
     </div>
     {{/each}}
@@ -112,9 +141,12 @@
 </div>
 
 <script>
+
+
+
     function updateTaskTitle(event) {
-      const id = event.target.attributes.taskid.nodeValue
-      const title = event.target.value
+      const id = event.target.attributes.taskid.nodeValue;
+      const title = event.target.value;
       if(title==""){
         document.getElementById('TitleErrormessage').style.display="block";
         return false;
@@ -127,8 +159,69 @@
         },
         method: "PATCH",
         body: JSON.stringify(payload)
-      }).then(() => location.reload())
+      }).then(() => location.reload());
     }
+
+
+function updateTaskDetails(event) {
+  const id = event.target.attributes.taskId.value;
+  const description = event.target.value;
+  const payload = { description };
+
+  fetch(`/task/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  }).then(() => location.reload());
+}
+
+
+function updateTaskDueDate(event) {
+  const id = event.target.attributes.taskId.value;
+  const dueDate = event.target.value;
+  const payload = { dueDate };
+
+  fetch(`/task/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  }).then(() => location.reload());
+}
+
+function updateTaskPriority(event) {
+  const id = event.target.attributes.taskId.value;
+  const selectElement = event.target;
+  const newPriority = selectElement.value;
+
+  const payload = { priority: newPriority };
+
+  fetch(`/task/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  }).then(() => location.reload());
+}
+
+function updateTaskCategory(event) {
+  const id = event.target.attributes.taskId.value;
+  const category = event.target.value;
+  const payload = { category };
+
+  fetch(`/task/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  }).then(() => location.reload());
+}
+
 
     function validateForm(event) {
     alert("test")

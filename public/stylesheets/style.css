@@ -274,6 +274,7 @@ padding-left: 10px;
 
 .task .checkbox img[data-checked="true"] {
   opacity: 1;
+ 
 }
 
 .task:hover .checkbox img {
@@ -533,18 +534,20 @@ background: rgba(0, 0, 0, 0.25);
   opacity: 0;
   width: 100%;
   height: 100%;
-  transition: .2s opacity;
+  transition: .2s;
+  
 }
 
 .x-task[data-checked="true"] .checkbox img {
   opacity: 1;
+  color: #2e2e2e;
 }
 
 .x-task input[type="text"] {
   border: none;
   background: none;
   outline: none;
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 .x-task[data-checked="true"] input[type="text"] {
@@ -563,13 +566,35 @@ background: rgba(0, 0, 0, 0.25);
   height: 100%;
 }
 
-
-.x-task:hover .x-details {
-  display: block;
-  margin-left: 4.2rem;
-}
-
 .x-task .x-details {
   display: none;
 }
 
+.x-task:hover .x-details {
+  display: block;
+  margin-left: 4.2rem;
+  
+}
+
+.x-task:hover .x-details input {
+  font-size: 1rem;
+  
+}
+
+.x-task:hover .x-details select, input[type="date"] {
+  max-width: 150px;
+  border-radius: 5px;
+  background: none;
+  border: 1px solid black;
+  transition: .2s ;
+  opacity: 0;
+}
+
+.x-task:hover .x-details select:hover, input[type="date"]:hover {
+  border-radius: 5px;
+  background: none;
+  border: 1px solid black;
+  transition: .2s ;
+  transform: scale(1.1); 
+  opacity: 1;
+}
