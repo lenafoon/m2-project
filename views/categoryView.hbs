@@ -93,7 +93,7 @@
        </div>
        
        <div class="modal-body">
-          <form id="task-form" name="task-form" method="POST" action="/" onsubmit="return validateForm(event);">
+          <form id="task-form" name="task-form" method="POST" action="/">
             <div class="mb-3 form-group">
               <label for="title" class="form-label">Title:</label>
               <input type="text" id="title" name="title" class="form-control" required/>
@@ -103,12 +103,12 @@
 
             <div class="mb-3" id="description-container">
               <label for="description" class="form-label">Description:</label>
-              <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+              <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
             </div>
 
             <div class="mb-3">
               <label for="due-date" class="form-label">Due Date:</label>
-              <input type="date" id="due-date" name="due-date" class="form-control"/>
+              <input type="date" id="due-date" name="due-date" class="form-control" required/>
             </div>
 
             <div class="mb-3">
@@ -133,7 +133,7 @@
              </select>
            </div>
 
-          <button type="submit" class="btn btn-primary">Create Task</button>
+          <input value="Create Task"type="submit" class="btn btn-primary"></input>
         </form>
       </div>
     </div>
@@ -221,15 +221,6 @@ function updateTaskCategory(event) {
     body: JSON.stringify(payload),
   }).then(() => location.reload());
 }
-
-
-    function validateForm(event) {
-    alert("test")
-    event.preventDefault()
-    return false;
-  }
- 
- 
 
 
     function toggleTaskCompletion(event) {
