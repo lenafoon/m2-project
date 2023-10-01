@@ -130,11 +130,11 @@ function deleteTask(event) {
     const searchResults = document.getElementById('searchResults');
     const readingList = document.getElementById('readingList');
 
-    searchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const searchTerm = booksSearchInput.value;
-        searchBooks(searchTerm);
-    });
+    // searchForm.addEventListener('submit', (e) => {
+    //     e.preventDefault();
+    //     const searchTerm = booksSearchInput.value;
+    //     searchBooks(searchTerm);
+    // });
 
     function searchBooks(query) {
         fetch(`${apiUrl}?q=${query}&key=${apiKey}`)

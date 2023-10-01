@@ -23,7 +23,10 @@
           <img src="/images/icons8-check-64.png" onclick="toggleTaskCompletion(event)" taskId="{{_id}}" alt="">
         </span>
         <input type="text" value="{{title}}" taskId="{{_id}}" onblur="updateTaskTitle(event)"></input>
+        <div id="TitleErrormessage" style="display:none">title is mandatory</div>
         <div class="x-delete" taskId="{{_id}}" onclick="deleteTask(event)">
+
+      
           <img src="/images/icons8-trash-64.png" alt="trash">
         </div>
       </div>
@@ -61,11 +64,13 @@
        </div>
        
        <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
+          <form id="task-form" name="task-form" method="POST" action="/" onsubmit="return validateForm(event);">
             <div class="mb-3">
               <label for="title" class="form-label">Title:</label>
-              <input type="text" id="title" name="title" class="form-control" required>
+              <input type="text" id="title" name="title" class="form-control" required/>
+              <label for="Title Error Message" hidden="true"></label>
             </div>
+
 
             <div class="mb-3" id="description-container">
               <label for="description" class="form-label">Description:</label>
@@ -74,7 +79,7 @@
 
             <div class="mb-3">
               <label for="due-date" class="form-label">Due Date:</label>
-              <input type="date" id="due-date" name="due-date" class="form-control">
+              <input type="date" id="due-date" name="due-date" class="form-control"/>
             </div>
 
             <div class="mb-3">
@@ -110,6 +115,10 @@
     function updateTaskTitle(event) {
       const id = event.target.attributes.taskid.nodeValue
       const title = event.target.value
+      if(title==""){
+        document.getElementById('TitleErrormessage').style.display="block";
+        return false;
+      }
       const payload = { title }
 
       fetch(`/task/${id}`, {
@@ -120,6 +129,15 @@
         body: JSON.stringify(payload)
       }).then(() => location.reload())
     }
+
+    function validateForm(event) {
+    alert("test")
+    event.preventDefault()
+    return false;
+  }
+ 
+ 
+
 
     function toggleTaskCompletion(event) {
       const id = event.target.attributes.taskid.nodeValue
