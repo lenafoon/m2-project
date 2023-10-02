@@ -9,63 +9,68 @@
     {{/if}}
   </div>
 
-  <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
+  <!--ADD TASK BUTTON-->
+
+   <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
      <img src="/images/icons8-plus-50.png" alt="">
-  </button>
+   </button>
 
-</div>
+        <!--ADD TASK FORM-->
+  <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="taskModalLabel">Create a New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       
+       <div class="modal-body">
+          <form id="task-form" name="task-form" method="POST" action="/">
+            <div class="mb-3 form-group">
+              <label for="title" class="form-label">Title:</label>
+              <input type="text" id="title" name="title" class="form-control" required/>
+              <label for="Title Error Message" hidden="true"></label>
+            </div>
 
-<div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="taskModalLabel">Create a New Task</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
 
-      <div class="modal-body">
-        <form id="task-form" method="POST" action="/">
+            <div class="mb-3" id="description-container">
+              <label for="description" class="form-label">Description:</label>
+              <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="due-date" class="form-label">Due Date:</label>
+              <input type="date" id="due-date" name="due-date" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label for="priority" class="form-label">Priority:</label>
+              <select id="priority" name="priority" class="form-select">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+          </div>
+
           <div class="mb-3">
-            <label for="title" class="form-label">Title:</label>
-            <input type="text" id="title" name="title" class="form-control" required>
-          </div>
-         
-          <div class="mb-3" id="description-container">
-            <label for="description" class="form-label">Description:</label>
-            <textarea id="description" name="description" class="form-control" rows="4"></textarea>
-          </div>
+             <label for="category" class="form-label">Category Tag:</label>
+             <select id="category" name="category" class="form-select">
+                <option value="Personal">Personal</option>
+                <option value="Health">Health</option>
+                <option value="Work">Work</option>
+                <option value="Home">Home</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Education">Education</option>
+                <option value="Finances">Finances</option>
+             </select>
+           </div>
 
-          <div class="mb-3">
-            <label for="due-date" class="form-label">Due Date:</label>
-            <input type="date" id="due-date" name="due-date" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label for="priority" class="form-label">Priority:</label>
-            <select id="priority" name="priority" class="form-select">
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="category" class="form-label">Category Tag:</label>
-            <select id="category" name="category" class="form-select">
-              <option value="Personal">Personal</option>
-              <option value="Health">Health</option>
-              <option value="Work">Work</option>
-              <option value="Home">Home</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Education">Education</option>
-              <option value="Finances">Finances</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Create Task</button>
+          <input value="Create Task"type="submit" class="btn btn-primary"></input>
         </form>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!--CATEGORIES-->

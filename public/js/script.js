@@ -115,7 +115,24 @@ function deleteTask(event) {
             
         }
 
+        
+//VALIDATE FORM
+function validateForm(event) {
+    const titleInput = document.getElementById('title');
+    const titleErrorMessage = document.querySelector('label[for="Title Error Message"]');
     
+    if (titleInput.value.trim() === '') {
+
+      titleErrorMessage.textContent = 'Title is required.';
+      titleErrorMessage.removeAttribute('hidden');
+      event.preventDefault();
+    } else {
+
+      titleErrorMessage.setAttribute('hidden', 'true');
+
+      document.getElementById('task-modal').classList.remove('show');
+    }
+  }
         
 
 
