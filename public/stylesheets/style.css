@@ -560,6 +560,11 @@ background: rgba(0, 0, 0, 0.25);
   margin-left: auto;
   cursor: pointer;
 }
+.x-task .x-delete img:hover {
+  transform: scale(1.4);
+  transition: 0.4s;
+}
+
 
 .x-task .x-delete img {
   width: 100%;
@@ -568,11 +573,13 @@ background: rgba(0, 0, 0, 0.25);
 
 .x-task .x-details {
   display: none;
+  transition: all 0.4s;
 }
 
 .x-task:hover .x-details {
   display: block;
   margin-left: 4.2rem;
+  transition:all  0.4s;
   
 }
 

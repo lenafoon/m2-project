@@ -95,7 +95,7 @@
        <div class="modal-body">
           <form id="task-form" name="task-form" method="POST" action="/" onsubmit="return validateForm(event);">
             <div class="mb-3">
-              <label for="title" class="form-label">Title:</label>
+              <label for="title" class="form-label">Title: </label>
               <input type="text" id="title" name="title" class="form-control" required/>
               <label for="Title Error Message" hidden="true"></label>
             </div>
@@ -143,8 +143,9 @@
 <script>
 
 
+//UPDATE TITLE
+function updateTaskTitle(event) {
 
-    function updateTaskTitle(event) {
       const id = event.target.attributes.taskid.nodeValue;
       const title = event.target.value;
       if(title==""){
@@ -162,8 +163,9 @@
       }).then(() => location.reload());
     }
 
-
+//UPDATE DESCRIPTION
 function updateTaskDetails(event) {
+
   const id = event.target.attributes.taskId.value;
   const description = event.target.value;
   const payload = { description };
@@ -177,8 +179,9 @@ function updateTaskDetails(event) {
   }).then(() => location.reload());
 }
 
-
+//UPDATE DUEDATE
 function updateTaskDueDate(event) {
+
   const id = event.target.attributes.taskId.value;
   const dueDate = event.target.value;
   const payload = { dueDate };
@@ -192,6 +195,7 @@ function updateTaskDueDate(event) {
   }).then(() => location.reload());
 }
 
+//UPDATE PRIORITY
 function updateTaskPriority(event) {
   const id = event.target.attributes.taskId.value;
   const selectElement = event.target;
@@ -208,7 +212,9 @@ function updateTaskPriority(event) {
   }).then(() => location.reload());
 }
 
+//UPDATE CATEGORY
 function updateTaskCategory(event) {
+
   const id = event.target.attributes.taskId.value;
   const category = event.target.value;
   const payload = { category };
@@ -222,17 +228,27 @@ function updateTaskCategory(event) {
   }).then(() => location.reload());
 }
 
+ //VALIDATE FORM
+function validateForm(event) {
+    const titleInput = document.getElementById('title');
+    const titleErrorMessage = document.querySelector('label[for="Title Error Message"]');
+    
+    if (titleInput.value.trim() === '') {
 
-    function validateForm(event) {
-    alert("test")
-    event.preventDefault()
-    return false;
+      titleErrorMessage.textContent = 'Title is required.';
+      titleErrorMessage.removeAttribute('hidden');
+      event.preventDefault();
+    } else {
+
+      titleErrorMessage.setAttribute('hidden', 'true');
+
+      document.getElementById('task-modal').classList.remove('show');
+    }
   }
- 
- 
 
+//COMPLETED TASK
+function toggleTaskCompletion(event) {
 
-    function toggleTaskCompletion(event) {
       const id = event.target.attributes.taskid.nodeValue
       const task = document.querySelector(`.x-task[data-id="${id}"]`)
       // Toggle our completed label accordingly

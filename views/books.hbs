@@ -26,33 +26,72 @@
 </section>
 
 <section class="reading-list">
-    <h3>My Reading List</h3>
+    <h3>Currently Reading:</h3>
     <ul id="readingList">
-        {{#each tasks}}
-                <div class="task-wrapper" data-task-id="{{_id}}">
-                    <label for="task-{{_id}}" class="task">
+       <div class="x-tasks">
+    {{#each tasks}}
+    <div class="x-task" data-id="{{_id}}" data-checked="{{completed}}">
+      <div class="x-row">
+        <span class="checkbox">
+          <img src="/images/icons8-check-64.png" onclick="toggleTaskCompletion(event)" taskId="{{_id}}" alt="">
+        </span>
+        <div id="TitleErrormessage" style="display:none">title is mandatory</div>
 
-                        <input type="checkbox" name="" id="task-{{_id}}">
-                        <span class="checkbox">
-                            <img src="/images/icons8-check-64.png" alt="">
-                        </span>
-                        <p class="task-text">{{title}}</p>
-                         <input type="text" class="edit-input" style="display: none;" value="{{title}}">
-                    </label>
+        <input type="text" value="{{title}}" taskId="{{_id}}" onblur="updateTaskTitle(event)"></input>
+        
+        <div class="x-delete" taskId="{{_id}}" onclick="deleteTask(event)">
 
-                    <div class="optionsTask">
-                       <div class="edit">
-                         <img src="/images/icons8-edit-64.png" alt="edit">
-                       </div>
+      
+          <img src="/images/icons8-trash-64.png" alt="trash">
+        </div>
+      </div>
+      <div class="x-details">
 
-                       <div class="delete" taskId="{{_id}}" onclick="deleteTask(event)">
-                         <img src="/images/icons8-trash-64.png" alt="trash">
-                       </div>
-                    </div>        
-                </div>
-            {{/each}}
+        {{#if author}}
+        <p><strong>Author: </strong>
+        <br>
+        <input type="text" value="{{author}}" taskId="{{_id}}" onblur="updateTaskDetails(event)"></p>
+        {{/if}}
 
-    </ul>
+        {{#if genre}}
+        <p> <strong>Genre: </strong>
+        <br>
+        {{genre}} 
+        <br>
+        {{/if}}
+
+        {{#if pageNumber}}
+        <p><strong>Number of Pages:</strong></p>
+        <br>
+        {{pageNumber}}
+        {{/if}}
+
+        {{#if source}}
+        <p><strong>Source: {{source}}</strong></p>
+        {{/if}}
+
+        {{#if dateStarted}}
+        <p><strong>Starting Date: {{dateStarted}}</strong></p>
+        {{/if}}
+
+        {{#if dateFinished}}
+        <p><strong>Finished on: {{dateFinished}}</strong></p>
+        {{/if}}
+
+        {{#if rating}}
+        <p><strong>Rating: {{rating}}</strong></p>
+        {{/if}}
+
+        {{#if comments}}
+        <p><strong>Comments: {{comments}}</strong></p>
+        {{/if}}
+
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+</ul>
 <!--ADD TASK BUTTON-->
 
    <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
@@ -82,14 +121,64 @@
               <input type="text" id="title" name="title" class="form-control" required>
             </div>
 
+           <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
             <div class="mb-3">
-              <label for="priority" class="form-label">Priority:</label>
-              <select id="priority" name="priority" class="form-select">
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
-          </div>
+              <label for="genre" class="form-label">Genre:</label>
+              <input type="text" id="genre" class="form-control" >
+            </div> 
+
+            <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
+            <div class="mb-3">
+              <label for="pageNumber" class="form-label">Number of Pages:</label>
+              <input type="text" id="pageNumber" class="form-control" >
+            </div> 
+
+            <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
+            <div class="mb-3">
+              <label for="source" class="form-label">Source:</label>
+              <input type="text" id="source" class="form-control" >
+            </div> 
+
+            <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
+            <div class="mb-3">
+              <label for="dateSarted" class="form-label">Started on:</label>
+              <input type="text" id="dateStarted" class="form-control" >
+            </div> 
+
+
+            <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
+            <div class="mb-3">
+              <label for="dateFinished" class="form-label">Finished on:</label>
+              <input type="text" id="dateFinished" class="form-control" >
+            </div> 
+
+
+            <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
+            <div class="mb-3">
+              <label for="rating" class="form-label">Rating:</label>
+              <input type="text" id="rating" class="form-control" >
+            </div> 
+
+            <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
+            <div class="mb-3">
+              <label for="" class="form-label">:</label>
+              <input type="text" id="" class="form-control" >
+            </div> 
+
+            <div class="modal-body">
+          <form id="task-form" method="POST" action="/">
+            <div class="mb-3">
+              <label for="comments" class="form-label">Comments:</label>
+              <input type="text" id="comments" class="form-control" >
+            </div> 
+
 
           <button type="submit" class="btn btn-primary">Add Book</button>
         </form>
