@@ -44,7 +44,7 @@ router.post('/signup', (req, res, next) => {
         });
       })
       .then(userFromDB => {
-        res.redirect('/userProfile');
+        res.redirect('/');
       })
       .catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -86,7 +86,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
-        res.redirect('/userProfile');
+        res.redirect('/');
       } else {
         console.log("Incorrect password. ");
         res.render('auth/login', { errorMessage: 'User not found and/or incorrect password.' });
