@@ -10,23 +10,16 @@
   <h1>{{challenge.name}} Challenge</h1>
 </div>
 
-<!-- challenge.hbs -->
-
 <div class="category-screen">
     <div class="tasks-wrapper">
-        <div class="tasks">
-            <div class="task-wrapper">
-                <label for="task-challenge" class="task">
-                    <input type="checkbox" name="" id="task-challenge">
-                </label>
-            </div>
-
+        <div class="x-tasks">
+            
             {{#each challenge.content}}
+            <div class="x-task">
+                <div class="x-row">
             <div class="task-wrapper">
                 <label for="task-{{@index}}" class="task">
-
-                    <input type="checkbox" name="" id="task-{{@index}}">
-                    <span class="checkbox">
+                    <span class="checkbox" data-checked="{{completed}}">
                         <img src="/images/icons8-check-64.png" alt="">
                     </span>
                     <p class="task-text">{{this.name}} <!--- Difficulty: {{this.difficulty}}--></p>
@@ -35,6 +28,9 @@
                 </label>
           
             </div>
+        </div>
+    </div>
+    
             {{/each}}
         </div>
     </div>

@@ -42,7 +42,7 @@ submitButton.addEventListener('click', function (event) {
         category,
     };
 
-    fetch('http://localhost:3000/task', {
+    fetch('/task', {
         method: 'POST',
         body: JSON.stringify(taskData),
         headers: {
@@ -92,7 +92,7 @@ function createTask() {
                 category: "{{metadata.name}}"
             }
 
-            fetch('http://localhost:3000/task', {
+            fetch('/task', {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {
@@ -108,7 +108,7 @@ function createTask() {
        
 function deleteTask(event) {
             const id = event.target.parentNode.attributes.taskid.nodeValue
-            fetch(`http://localhost:3000/task/${id}`, {
+            fetch(`/task/${id}`, {
                 method: "DELETE",
             }).then(() => location.reload())
 
