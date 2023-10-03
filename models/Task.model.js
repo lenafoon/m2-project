@@ -4,11 +4,15 @@ const taskSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+  }, 
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
-    completed: {
-      type: Boolean,
-      default: false,
-    },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
   description: {
     type: String,
   },

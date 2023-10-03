@@ -16,8 +16,9 @@ router.get('/categories/:category', isLoggedIn,(req, res) => {
     res.status(404).send("Not Found :-(");
     return
   }
+  const userId = req.session.currentUser._id
 
-  Task.find({ category: metadata.name})
+  Task.find({$and: [{ category: metadata.name}, {userId: userId }]})
   .then(tasks => {
     res.render('categoryView', { tasks, isLoggedIn: true, metadata });
   })

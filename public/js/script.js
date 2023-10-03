@@ -137,23 +137,12 @@ function validateForm(event) {
 
 
       //BOOKS
-      const book = require('/models/Book.model');
 
       document.addEventListener('DOMContentLoaded', function () {
-        apiKey = 'GOOGLE_BOOKS_API_KEY';
-
+      
     const apiUrl = 'https://www.googleapis.com/books/v1/volumes';
-    
-    const searchForm = document.querySelector('#searchForm');
-    const searchInput = document.getElementById('booksSearchInput');
-    const searchResults = document.getElementById('searchResults');
-    const readingList = document.getElementById('readingList');
 
-    // searchForm.addEventListener('submit', (e) => {
-    //     e.preventDefault();
-    //     const searchTerm = booksSearchInput.value;
-    //     searchBooks(searchTerm);
-    // });
+    const readingList = document.getElementById('readingList');
 
     function searchBooks(query) {
         fetch(`${apiUrl}?q=${query}&key=${apiKey}`)

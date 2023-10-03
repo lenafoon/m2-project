@@ -7,21 +7,29 @@ const Task = require('./../models/Task.model')
 router.get("/", async (req, res, next) => {
    const categoriesArray = [...categories]
 
-    await Promise.all(categoriesArray.map(async (category, i) => {
-     await Task.find({ category: category.name })
-        .then(tasks => {
-          // console.log(category.name, tasks)
-          category.tasks = tasks
+      const userId = req.session.currentUser._id
+       
+      const tasks = await Task.find({ userId: userId })
+
+
+
+      // now we have all tasks, we should find a way to place them in the corresponding categories
+
+      // Change the categories array to contain specific tasks
+      categoriesArray.map(category => {
+
+        // Filter the tasks array for each of the categories
+        category.tasks = tasks.filter(task => {
+          return task.category == category.name
         })
-        .catch(error => {
-          console.log("error while finding task", error)
-        })
-    }))
+ 
+      })
+      
 
       //  res.render("index");
        res.render("index", { categories: categoriesArray, userInSession: req.session.currentUser });
 
-     }
- );
+     })
+ 
 
 module.exports = router;

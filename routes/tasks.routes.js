@@ -35,8 +35,10 @@ router.post('/task', (req, res) => {
   console.log(title)
   console.log(description)
 
+  const userId = req.session.currentUser._id
 
   const task = new Task({
+    userId,
     title,
     description,
     dueDate,

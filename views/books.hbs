@@ -12,23 +12,12 @@
         </div>
 </div>
 
-<!-- BOOK SEARCH -->
-<section class="book-search">
-    <div class="book-search-field">
-    <form id="searchForm">
-        <input type="text" id="booksSearchInput" placeholder="Search for a book">
-        <button type="submit">Search</button>
-    </form>
-</div>
-    <div id="searchResults">
 
-    </div>
-</section>
 
 <!-- READING LIST -->
 <section class="reading-list">
     <h3>Currently Reading:</h3>
-    <ul id="readingList">
+    <div id="readingList">
        <div class="x-tasks">
     {{#each book}}
     <div class="x-task" data-id="{{_id}}" data-checked="{{completed}}">
@@ -179,24 +168,65 @@
 </section>
 
 
-    <div class="challenges">
-        <h4>Reading Goals:</h4>
-        <p>Reading Goal for 2023: X books</p>
-        <p>Books Read This Year: X</p>
-    </div>
 
-    <div class="overview">
-        <h4>Yearly Overview:</h4>
-      
-    </div>
+        <!--ADD TASK FORM-->
+  <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="taskModalLabel">Create a New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       
+       <div class="modal-body">
+          <form id="task-form" name="task-form" method="POST" action="/">
+            <div class="mb-3 form-group">
+              <label for="title" class="form-label">Title:</label>
+              <input type="text" id="title" name="title" class="form-control" required/>
+              <label for="Title Error Message" hidden="true"></label>
+            </div>
 
-    <div class="recommendations">
-        <h4>Book Recommendations:</h4>
-        <ul>
-            <li><a href="#">Recommended Book 1</a></li>
-            <li><a href="#">Recommended Book 2</a></li>
-            <li><a href="#">Recommended Book 3</a></li>
-        </ul>
+
+            <div class="mb-3" id="description-container">
+              <label for="description" class="form-label">Description:</label>
+              <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="due-date" class="form-label">Due Date:</label>
+              <input type="date" id="due-date" name="due-date" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label for="priority" class="form-label">Priority:</label>
+              <select id="priority" name="priority" class="form-select">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+          </div>
+
+          <div class="mb-3">
+             <label for="category" class="form-label">Category Tag:</label>
+             <select id="category" name="category" class="form-select">
+                <option value="Personal">Personal</option>
+                <option value="Health">Health</option>
+                <option value="Work">Work</option>
+                <option value="Home">Home</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Education">Education</option>
+                <option value="Finances">Finances</option>
+             </select>
+           </div>
+
+          <button type="submit" class="btn btn-primary" onclick="validateForm(event)">Create Task</button>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
+</div>
+
+
 </section>
 </div>
