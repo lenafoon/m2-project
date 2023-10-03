@@ -74,8 +74,8 @@ body {
 
 @media (max-width: 768px) {
   .categories .category {
-    width: 8rem; /* Adjust the size as needed */
-    height: 8rem; /* Adjust the size as needed */
+    width: 8rem; 
+    height: 8rem;
   }
 }
 
