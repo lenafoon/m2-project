@@ -1,10 +1,11 @@
 const express = require('express');
 const { categories } = require('../public/js/categories');
+const { isLoggedIn, isLoggedOut } = require ('../middleware/route-guard.js')
 const router = express.Router();
 const Task = require('./../models/Task.model')
 
 /* GET home page */
-router.get("/", async (req, res, next) => {
+router.get("/", isLoggedIn, async (req, res, next) => {
    const categoriesArray = [...categories]
 
       const userId = req.session.currentUser._id
