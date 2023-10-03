@@ -136,7 +136,9 @@ function validateForm(event) {
         
 
 
-      //books
+      //BOOKS
+      const book = require('/models/Book.model');
+
       document.addEventListener('DOMContentLoaded', function () {
         apiKey = 'GOOGLE_BOOKS_API_KEY';
 

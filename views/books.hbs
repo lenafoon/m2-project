@@ -12,7 +12,7 @@
         </div>
 </div>
 
-
+<!-- BOOK SEARCH -->
 <section class="book-search">
     <div class="book-search-field">
     <form id="searchForm">
@@ -25,23 +25,20 @@
     </div>
 </section>
 
+<!-- READING LIST -->
 <section class="reading-list">
     <h3>Currently Reading:</h3>
     <ul id="readingList">
        <div class="x-tasks">
-    {{#each tasks}}
+    {{#each book}}
     <div class="x-task" data-id="{{_id}}" data-checked="{{completed}}">
       <div class="x-row">
         <span class="checkbox">
           <img src="/images/icons8-check-64.png" onclick="toggleTaskCompletion(event)" taskId="{{_id}}" alt="">
         </span>
         <div id="TitleErrormessage" style="display:none">title is mandatory</div>
-
-        <input type="text" value="{{title}}" taskId="{{_id}}" onblur="updateTaskTitle(event)"></input>
         
         <div class="x-delete" taskId="{{_id}}" onclick="deleteTask(event)">
-
-      
           <img src="/images/icons8-trash-64.png" alt="trash">
         </div>
       </div>
@@ -50,41 +47,40 @@
         {{#if author}}
         <p><strong>Author: </strong>
         <br>
-        <input type="text" value="{{author}}" taskId="{{_id}}" onblur="updateTaskDetails(event)"></p>
+        <input type="text" value="{{author}}" bookId="{{_id}}" ></p>
         {{/if}}
 
         {{#if genre}}
         <p> <strong>Genre: </strong>
         <br>
-        {{genre}} 
-        <br>
+        <input type="text" value="{{genre}}" bookId="{{_id}}" ></p>
         {{/if}}
 
         {{#if pageNumber}}
         <p><strong>Number of Pages:</strong></p>
         <br>
-        {{pageNumber}}
+        <input type="text" value="{{pageNumber}}" bookId="{{_id}}" ></p>
         {{/if}}
 
         {{#if source}}
         <p><strong>Source: {{source}}</strong></p>
+        <input type="text" value="{{source}}" bookId="{{_id}}" ></p>
         {{/if}}
 
-        {{#if dateStarted}}
         <p><strong>Starting Date: {{dateStarted}}</strong></p>
-        {{/if}}
+        <input type="text" value="{{dateStarted}}" bookId="{{_id}}" ></p>
 
-        {{#if dateFinished}}
+
         <p><strong>Finished on: {{dateFinished}}</strong></p>
-        {{/if}}
+        <input type="text" value="{{dateFinished}}" bookId="{{_id}}" ></p>
 
-        {{#if rating}}
+
         <p><strong>Rating: {{rating}}</strong></p>
-        {{/if}}
+        <input type="text" value="{{rating}}" bookId="{{_id}}" ></p>
 
-        {{#if comments}}
+
         <p><strong>Comments: {{comments}}</strong></p>
-        {{/if}}
+        <input type="text" value="{{comments}}" bookId="{{_id}}" ></p>
 
       </div>
     </div>
@@ -165,12 +161,6 @@
               <input type="text" id="rating" class="form-control" >
             </div> 
 
-            <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="" class="form-label">:</label>
-              <input type="text" id="" class="form-control" >
-            </div> 
 
             <div class="modal-body">
           <form id="task-form" method="POST" action="/">
@@ -188,42 +178,6 @@
 </div>
 </section>
 
-<!--PLACEHOLDER FOR NOW-->
-<section>
-    <div class="book-entry">
-        <div class="book-details">
-            <img src="" alt="Book Cover">
-            <div class="info">
-                <h5>Title: </h5>
-                <p>Author: </p>
-                <p>Genre: </p>
-                <p>Page Number:</p>
-                <p>Source: </p>
-                <p>Date Started: </p>
-                <p>Date Finished: </p>
-                <p>Rating: ★★★★☆</p>
-                <p>Reading Progress:</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 75%;"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="notes">
-            <h4>Comments:</h4>
-            <p></p>
-            <input type="text">
-        </div>
-    </div>
-
-    <div class="tbr-list">
-        <h4>To Be Read (TBR):</h4>
-        <ul>
-            <li><a href="#">Book Title 1</a></li>
-            <li><a href="#">Book Title 2</a></li>
-            <li><a href="#">Book Title 3</a></li>
-        </ul>
-    </div>
 
     <div class="challenges">
         <h4>Reading Goals:</h4>
