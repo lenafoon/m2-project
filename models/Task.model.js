@@ -26,7 +26,7 @@ const taskSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ['Personal', 'Health', 'Work', 'Home', 'Shopping', 'Education', 'Finances', 'Spoons', 'Challenges'],
+    enum: ['Personal', 'Health', 'Work', 'Home', 'Shopping', 'Education', 'Finances', 'Challenges'],
   },
 });
 

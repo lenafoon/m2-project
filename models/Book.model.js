@@ -9,14 +9,8 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  genre: {
-    type: String,
-  },
   pageNumber: {
     type: Number,
-  },
-  source: {
-    type: String,
   },
   dateStarted: {
     type: Date,
@@ -25,9 +19,9 @@ const bookSchema = new mongoose.Schema({
     type: Date,
   },
   rating: {
-    type: String,
-    enum: ['★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★'],
-    default: '★★★☆☆', 
+    type: Number,
+    min: 1,
+    max: 5, 
   },
   comments: [{
     type: String,

@@ -21,8 +21,6 @@ router.get('/tasks', (req, res) => {
   
 });
 
-
-//TASK CREATION FORM
 router.get('/task', (req, res) => {
   res.render('task',);
 });
@@ -44,7 +42,6 @@ router.post('/task', (req, res) => {
     dueDate,
     priority,
     category,
-    // checklist: checklist.map(item => ({ item })),
   });
 
   task
@@ -60,7 +57,7 @@ router.post('/task', (req, res) => {
 });
 
 
-//TASK CREATION FORM
+//DELETE TASK
 router.delete('/task/:taskId', (req, res) => {
 
   const { taskId } = req.params
@@ -73,8 +70,6 @@ router.delete('/task/:taskId', (req, res) => {
 
 
 //PATCH
-
-
 router.patch('/task/:taskId', (req, res) => {
   const { taskId } = req.params;
 

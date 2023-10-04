@@ -136,58 +136,115 @@ function validateForm(event) {
         
 
 
-      //BOOKS
+//BOOKS
 
-      document.addEventListener('DOMContentLoaded', function () {
-      
-    const apiUrl = 'https://www.googleapis.com/books/v1/volumes';
+function addBook() {
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value; 
+    const startedOn = document.querySelector('#startedOn').value;
+    const rating = document.querySelector('#rating').value; 
+    const readingStatus = document.querySelector('#readingStatus').value; 
 
-    const readingList = document.getElementById('readingList');
+    const bookData = {
+        title,
+        author,
+        startedOn,
+        rating,
+        readingStatus,
+    };
 
-    function searchBooks(query) {
-        fetch(`${apiUrl}?q=${query}&key=${apiKey}`)
-            .then((response) => response.json())
-            .then((data) => {
-                displaySearchResults(data.items);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
-    }
-
-    function displaySearchResults(books) {
-        searchResults.innerHTML = '';
-        books.forEach((book) => {
-            const bookInfo = book.volumeInfo;
-            const bookTitle = bookInfo.title;
-            const bookAuthors = bookInfo.authors ? bookInfo.authors.join(', ') : 'Unknown';
-            const bookThumbnail = bookInfo.imageLinks?.thumbnail || 'No Image';
-
-            const resultItem = document.createElement('div');
-            resultItem.classList.add('book-result');
-            resultItem.innerHTML = `
-                <img src="${bookThumbnail}" alt="${bookTitle}">
-                <h3>${bookTitle}</h3>
-                <p>Author(s): ${bookAuthors}</p>
-                <button onclick="addToReadingList('${bookTitle}', '${bookAuthors}')">Add to Reading List</button>
-            `;
-
-            searchResults.appendChild(resultItem);
+    fetch('/books', {
+        method: 'POST',
+        body: JSON.stringify(bookData),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(() => {
+            window.location.reload(); 
+        })
+        .catch(() => {
+            alert('Something went wrong while adding the book.');
         });
+}
+
+//DELETE BOOK
+function deleteBook(event) {
+    const id = event.target.parentNode.attributes.bookid.nodeValue; 
+    fetch(`/books/${id}`, {
+        method: 'DELETE',
+    })
+        .then(() => {
+            window.location.reload();
+        })
+        .catch(() => {
+            alert('Something went wrong while deleting the book.');
+        });
+}
+
+//FORM SUBMISSION
+submitButton.addEventListener('click', function (event) {
+    event.preventDefault(); 
+
+    addBook();
+});
+
+
+//UPDATE BOOK
+function updateBook(event) {
+    const id = event.target.parentNode.attributes.bookid.nodeValue;
+    const title = event.target.parentNode.querySelector('input[type="text"]').value;
+    const author = event.target.parentNode.querySelector('input[name="author"]').value; 
+    const startedOn = event.target.parentNode.querySelector('input[name="startedOn"]').value; 
+    const rating = event.target.parentNode.querySelector('select[name="rating"]').value; 
+    const readingStatus = event.target.parentNode.querySelector('select[name="readingStatus"]').value;
+    const bookData = {
+        title,
+        author,
+        startedOn,
+        rating,
+        readingStatus,
+    };
+
+    fetch(`/books/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(bookData),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(() => {
+            window.location.reload(); 
+        })
+        .catch(() => {
+            alert('Something went wrong while updating the book.');
+        });
+}
+
+//VALIDATE BOOK
+function validateBookForm(event) {
+    const titleInput = document.querySelector('#title');
+    if (titleInput.value.trim() === '') {
+        alert('Title is mandatory.');
+        event.preventDefault();
     }
+}
 
-    function addToReadingList(title, authors) {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
-            <strong>${title}</strong> by ${authors}
-            <button onclick="removeFromReadingList(this)">Remove</button>
-        `;
+submitButton.addEventListener('click', function (event) {
+    event.preventDefault(); 
+    validateBookForm(event); 
+    addBook(); 
+});
 
-        readingList.appendChild(listItem);
+document.addEventListener('click', function (event) {
+    if (event.target && event.target.className === 'x-update') {
+        updateBook(event);
     }
+});
 
-    function removeFromReadingList(button) {
-        button.parentElement.remove();
+document.addEventListener('click', function (event) {
+    if (event.target && event.target.className === 'x-delete') {
+        deleteBook(event);
     }
-
-    });
+});
+      

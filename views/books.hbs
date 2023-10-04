@@ -12,221 +12,252 @@
         </div>
 </div>
 
+<div class="x-tasks">
 
+  <div class="reading-status-section" id="tbr-section">
+    <h4>To Be Read:</h4>
 
-<!-- READING LIST -->
-<section class="reading-list">
-    <h3>Currently Reading:</h3>
-    <div id="readingList">
-       <div class="x-tasks">
-    {{#each book}}
-    <div class="x-task" data-id="{{_id}}" data-checked="{{completed}}">
-      <div class="x-row">
-        <span class="checkbox">
-          <img src="/images/icons8-check-64.png" onclick="toggleTaskCompletion(event)" taskId="{{_id}}" alt="">
-        </span>
-        <div id="TitleErrormessage" style="display:none">title is mandatory</div>
-        
-        <div class="x-delete" taskId="{{_id}}" onclick="deleteTask(event)">
-          <img src="/images/icons8-trash-64.png" alt="trash">
-        </div>
-      </div>
-      <div class="x-details">
+  </div>
+<br>
+  {{#each books}}
+  <div class="x-task" data-id="{{_id}}" data-checked="{{completed}}">
+    <div class="x-row">
+      <span class="checkbox">
+        <img src="/images/icons8-check-64.png" onclick="toggleBookCompletion(event)" bookId="{{_id}}" alt="">
+      </span>
+      <div id="TitleErrormessage" style="display:none">Title is mandatory</div>
 
-        {{#if author}}
-        <p><strong>Author: </strong>
-        <br>
-        <input type="text" value="{{author}}" bookId="{{_id}}" ></p>
-        {{/if}}
+      <input type="text" value="{{title}}" bookId="{{_id}}" onblur="updateBookTitle(event)"></input>
 
-        {{#if genre}}
-        <p> <strong>Genre: </strong>
-        <br>
-        <input type="text" value="{{genre}}" bookId="{{_id}}" ></p>
-        {{/if}}
-
-        {{#if pageNumber}}
-        <p><strong>Number of Pages:</strong></p>
-        <br>
-        <input type="text" value="{{pageNumber}}" bookId="{{_id}}" ></p>
-        {{/if}}
-
-        {{#if source}}
-        <p><strong>Source: {{source}}</strong></p>
-        <input type="text" value="{{source}}" bookId="{{_id}}" ></p>
-        {{/if}}
-
-        <p><strong>Starting Date: {{dateStarted}}</strong></p>
-        <input type="text" value="{{dateStarted}}" bookId="{{_id}}" ></p>
-
-
-        <p><strong>Finished on: {{dateFinished}}</strong></p>
-        <input type="text" value="{{dateFinished}}" bookId="{{_id}}" ></p>
-
-
-        <p><strong>Rating: {{rating}}</strong></p>
-        <input type="text" value="{{rating}}" bookId="{{_id}}" ></p>
-
-
-        <p><strong>Comments: {{comments}}</strong></p>
-        <input type="text" value="{{comments}}" bookId="{{_id}}" ></p>
-
+      <div class="x-delete" bookId="{{_id}}" onclick="deleteBook(event)">
+        <img src="/images/icons8-trash-64.png" alt="trash">
       </div>
     </div>
-    {{/each}}
+    <div class="x-details">
+
+      {{#if author}}
+      <p><strong>Author: </strong>
+        <br>
+        <input type="text" value="{{author}}" bookId="{{_id}}" onblur="updateBookAuthor(event)"></p>
+      {{/if}}
+
+      {{#if startedOn}}
+      <p> <strong>Started on: </strong>
+        <br>
+        <input type="date" value="{{startedOn}}" bookId="{{_id}}" onblur="updateBookStartedOn(event)"></p>
+      {{/if}}
+
+      {{#if rating}}
+      <p><strong>Rating: </strong>{{rating}}
+        <select bookId="{{_id}}" name="rating" class="form-select" onblur="updateBookRating(event)">
+          <option value="1">★</option>
+          <option value="2">★★</option>
+          <option value="3">★★★</option>
+          <option value="4">★★★★</option>
+          <option value="5">★★★★★</option>
+        </select>
+      </p>
+      {{/if}}
+
+      {{#if readingStatus}}
+      <p><strong>Reading Status: </strong>{{readingStatus}}
+        <select bookId="{{_id}}" name="readingStatus" class="form-select" onblur="updateBookReadingStatus(event)">
+          <option value="To Be Read">To Be Read</option>
+          <option value="Reading">Reading</option>
+          <option value="Read">Read</option>
+        </select>
+      </p>
+      {{/if}}
+
+    </div>
   </div>
+  {{/each}}
+</div>
+ 
+<!--ADD BOOK BUTTON-->
 
-</ul>
-<!--ADD TASK BUTTON-->
-
-   <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#task-modal">
+   <button id="open-modal-button" class="add-task-button" data-bs-toggle="modal" data-bs-target="#book-modal" >
      <img src="/images/icons8-plus-50.png" alt="">
    </button>
 
-        <!--ADD TASK FORM-->
-  <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="taskModalLabel">Add New Book</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-       </div>
-       
-       <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="title" class="form-label">Title:</label>
-              <input type="text" id="title" name="title" class="form-control" required>
-            </div>
+<!--ADD BOOK FORM-->
 
-            <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="title" class="form-label">Author:</label>
-              <input type="text" id="title" name="title" class="form-control" required>
-            </div>
-
-           <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="genre" class="form-label">Genre:</label>
-              <input type="text" id="genre" class="form-control" >
-            </div> 
-
-            <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="pageNumber" class="form-label">Number of Pages:</label>
-              <input type="text" id="pageNumber" class="form-control" >
-            </div> 
-
-            <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="source" class="form-label">Source:</label>
-              <input type="text" id="source" class="form-control" >
-            </div> 
-
-            <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="dateSarted" class="form-label">Started on:</label>
-              <input type="text" id="dateStarted" class="form-control" >
-            </div> 
-
-
-            <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="dateFinished" class="form-label">Finished on:</label>
-              <input type="text" id="dateFinished" class="form-control" >
-            </div> 
-
-
-            <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="rating" class="form-label">Rating:</label>
-              <input type="text" id="rating" class="form-control" >
-            </div> 
-
-
-            <div class="modal-body">
-          <form id="task-form" method="POST" action="/">
-            <div class="mb-3">
-              <label for="comments" class="form-label">Comments:</label>
-              <input type="text" id="comments" class="form-control" >
-            </div> 
-
-
-          <button type="submit" class="btn btn-primary">Add Book</button>
-        </form>
+  <div class="modal fade" id="book-modal" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookModalLabel">Add a Book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    </div>
-  </div>
-</div>
-</section>
 
-
-
-        <!--ADD TASK FORM-->
-  <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="taskModalLabel">Create a New Task</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-       </div>
-       
-       <div class="modal-body">
-          <form id="task-form" name="task-form" method="POST" action="/">
-            <div class="mb-3 form-group">
-              <label for="title" class="form-label">Title:</label>
-              <input type="text" id="title" name="title" class="form-control" required/>
-              <label for="Title Error Message" hidden="true"></label>
-            </div>
-
-
-            <div class="mb-3" id="description-container">
-              <label for="description" class="form-label">Description:</label>
-              <textarea id="description" name="description" class="form-control" rows="4"></textarea>
-            </div>
-
-            <div class="mb-3">
-              <label for="due-date" class="form-label">Due Date:</label>
-              <input type="date" id="due-date" name="due-date" class="form-control" />
-            </div>
-
-            <div class="mb-3">
-              <label for="priority" class="form-label">Priority:</label>
-              <select id="priority" name="priority" class="form-select">
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
+      <div class="modal-body">
+        <form id="book-form" name="book-form" method="POST" action="/books">
+          <div class="mb-3 form-group">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" id="book-title" name="title" class="form-control" required/>
+            <label for="Title Error Message" hidden="true"></label>
           </div>
 
           <div class="mb-3">
-             <label for="category" class="form-label">Category Tag:</label>
-             <select id="category" name="category" class="form-select">
-                <option value="Personal">Personal</option>
-                <option value="Health">Health</option>
-                <option value="Work">Work</option>
-                <option value="Home">Home</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Education">Education</option>
-                <option value="Finances">Finances</option>
-             </select>
-           </div>
+            <label for="author" class="form-label">Author:</label>
+            <input id="book-author" name="author" class="form-control"></input>
+          </div>
 
-          <button type="submit" class="btn btn-primary" onclick="validateForm(event)">Create Task</button>
+          <div class="mb-3">
+            <label for="started-on" class="form-label">Started on:</label>
+            <input type="date" id="book-started-on" name="started-on" class="form-control" />
+          </div>
+
+          <div class="mb-3">
+            <label for="rating" class="form-label">Rating:</label>
+            <select id="book-rating" name="rating" class="form-select">
+              <option value="1">★</option>
+              <option value="2">★★</option>
+              <option value="3">★★★</option>
+              <option value="4">★★★★</option>
+              <option value="★★★★★">★★★★★</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="reading-status" class="form-label">Reading Status:</label>
+            <select id="book-reading-status" name="reading-status" class="form-select">
+              <option value="To Be Read">To Be Read</option>
+              <option value="Reading">Reading</option>
+              <option value="Read">Read</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" onclick="validateBookForm(event)">Add Book</button>
         </form>
       </div>
     </div>
   </div>
 </div>
-</div>
 
 
-</section>
-</div>
+<script>
+  
+// UPDATE BOOK TITLE
+function updateBookTitle(event) {
+  const id = event.target.attributes.bookId.nodeValue;
+  const title = event.target.value;
+  
+  if (title === '') {
+    document.getElementById('TitleErrormessage').style.display = 'block';
+    return false;
+  }
+  
+  const payload = { title };
+
+  fetch(`/books/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload)
+  }).then(() => location.reload());
+}
+
+// UPDATE BOOK AUTHOR
+function updateBookAuthor(event) {
+  const id = event.target.attributes.bookId.nodeValue;
+  const author = event.target.value;
+  const payload = { author };
+
+  fetch(`/books/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload)
+  }).then(() => location.reload());
+}
+
+// UPDATE BOOK STARTED ON
+function updateBookStartedOn(event) {
+  const id = event.target.attributes.bookId.nodeValue;
+  const startedOn = event.target.value;
+  const payload = { startedOn };
+
+  fetch(`/books/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload)
+  }).then(() => location.reload());
+}
+
+// UPDATE BOOK RATING
+function updateBookRating(event) {
+  const id = event.target.attributes.bookId.nodeValue;
+  const selectElement = event.target;
+  const newRating = selectElement.value;
+  const payload = { rating: newRating };
+
+  fetch(`/books/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload)
+  }).then(() => location.reload());
+}
+
+// UPDATE BOOK READING STATUS
+function updateBookReadingStatus(event) {
+  const id = event.target.attributes.bookId.nodeValue;
+  const selectElement = event.target;
+  const newReadingStatus = selectElement.value;
+  const payload = { readingStatus: newReadingStatus };
+
+  fetch(`/books/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload)
+  }).then(() => location.reload());
+
+}
+
+// VALIDATE BOOK FORM
+function validateBookForm(event) {
+  const titleInput = document.getElementById('book-title');
+  const titleErrorMessage = document.querySelector('label[for="Title Error Message"]');
+
+  if (titleInput.value.trim() === '') {
+    titleErrorMessage.textContent = 'Title is required.';
+    titleErrorMessage.removeAttribute('hidden');
+    event.preventDefault();
+  } else {
+    titleErrorMessage.setAttribute('hidden', 'true');
+  }
+}
+
+// COMPLETED BOOK
+function toggleBookCompletion(event) {
+  const id = event.target.attributes.bookId.nodeValue;
+  const book = document.querySelector(`.x-task[data-id="${id}"]`);
+
+  let completed = book.attributes['data-checked'].nodeValue;
+  completed = completed === 'false' ? 'true' : 'false';
+
+  const payload = { completed };
+
+  fetch(`/books/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PATCH',
+    body: JSON.stringify(payload)
+  })
+    .then((response) => response.json())
+    .then((response) => {
+
+      book.attributes['data-checked'].nodeValue = response.completed;
+    });
+}
+</script>
+

@@ -60,7 +60,9 @@ body {
   margin-top: 2rem;
   padding: 0 30px;
   padding-bottom: 10px;
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 
@@ -613,4 +615,8 @@ background: rgba(0, 0, 0, 0.25);
   transition: .2s ;
   transform: scale(1.1); 
   opacity: 1;
+}
+
+#challenges {
+  display: flex;
 }
