@@ -43,23 +43,6 @@ router.get('/categories', isLoggedIn, (req, res) => {
 
 
 
-router.get('/spoons', isLoggedIn, (req, res) => {
-  Task.find({ category: "spoons"})
-  .then(tasks => {
-    res.render('spoons', { tasks, isLoggedIn: true });
-  })
-  .catch(error => {
-    console.error(`Error fetching spoons: ${error}`);
-    res.status(500).send('Internal Server Error');
-  });
-});
-
-
-router.get('/analytics', isLoggedIn, (req, res) => {
-  
-    res.render('analytics', { isLoggedIn: true });
-  });
-
 
 
 module.exports = router;

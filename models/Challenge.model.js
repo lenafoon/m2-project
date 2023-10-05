@@ -5,6 +5,10 @@ const challengeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
   difficulty: {
     type: String,
     enum: ['Easy', 'Medium', 'Hard'],
@@ -24,4 +28,3 @@ const Challenge = mongoose.model('Challenge', challengeSchema);
 
 module.exports = Challenge;
 
-// one minor change

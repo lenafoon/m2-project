@@ -1,37 +1,27 @@
 <!-- challenge.hbs -->
  <div class="back-btn">
-             <a href="/challenges" class="back-btn">
-            <img src="/images/icons8-back-64.png" alt="Back" />
-          </a>
+        <a href="/challenges" class="back-btn">
+          <img src="/images/icons8-back-64.png" alt="Back" />
+        </a>
  </div>
 
 <div class="category-details">
-  <img src="{{challenge.icon}}" alt="Challenge Icon">
-  <h1>{{challenge.name}} Challenge</h1>
+    <img src="{{challenge.icon}}" alt="Challenge Icon">
+    <h1>{{challenge.name}} Challenge</h1>
 </div>
 
 
-<div class="x-tasks">
-            
- {{#each challenge.content}}
-            <div class="x-task">
-                <div class="x-row">
-            <div class="task-wrapper">
-                <label for="task-{{@index}}" class="task">
-                    <span class="checkbox" data-checked="{{completed}}">
-                        <img src="/images/icons8-check-64.png" alt="">
-                    </span>
-                    <p class="task-text">{{this.name}} <!--- Difficulty: {{this.difficulty}}--></p>
-                  
+<ul class="challenge-tasks">
+  {{#each challenge.content}}
+  <li class="challenge">
+    <label class="task">
+      <input type="checkbox" class="checkbox" id="task-{{@index}}">
+      <span class="checkmark"></span>
+      <p class="task-text">{{this.name}} <!--- Difficulty: {{this.difficulty}}--></p>
+<br>
+      <p class="x-details hidden"><strong>Difficulty: </strong> {{this.difficulty}}</p>
 
-                </label>
-          
-            </div>
-        </div>
-    </div>
-    
-            {{/each}}
-        </div>
-    </div>
-</div>
-
+    </label>
+  </li>
+  {{/each}}
+</ul>

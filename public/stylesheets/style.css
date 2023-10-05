@@ -205,153 +205,6 @@ padding-left: 10px;
 
 
 
-/*tasks*/
-
-.tasks-wrapper {
-  padding: 0 30px;
-  margin-top: 1rem;
-
-  padding-bottom: 20px;
-  
-}
-
-.tasks {
-  padding-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.task-wrapper {
-  display: flex;
-  justify-content: space-between;
-  max-height: 2rem;
-  position: relative;
-}
-
-.task {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 500;
-  width: max-content;
-  cursor: pointer;
-}
-
-.task-text {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin: 0; 
-}
-
-
-.new-task .task-text {
-  align-self: flex-start;
-}
-
-
-.task input[type="text"] {
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-.task .checkbox {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 2px;
-  border: 1px solid #2e2e2e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.task .checkbox:hover {
-  transform: scale(1.4);
-  transition: all 0.3s;
-}
-
-
-.task .checkbox img {
-  height: 2rem;
-  width: 2rem;
-  color: #2e2e2e;
-  opacity: 0;
-  transition: all 0.3s;
-
-}
-
-.task .checkbox img[data-checked="true"] {
-  opacity: 1;
- 
-}
-
-.task:hover .checkbox img {
-  opacity: 1;
-  
-}
-
-
-
-.task input:checked~.checkbox {
-  background-color: #2e2e2e;
-}
-
-.task input:checked~.checkbox img {
-  opacity: 1;
-  color: #fff;
-}
-
-.task input:checked~input[type="text"] {
-  text-decoration: line-through;
-  opacity: 1;
-}
-
-.optionsTask {
-  position: absolute;
-  top: 0; 
-  right: 0;
-}
-
-.optionsTask div {
-  display: inline-block;
-  margin-right: 10px; 
-}
-
-
-.task-wrapper .spoon,
-.task-wrapper .edit,
-.task-wrapper .delete {
-  width: 2rem; 
-  height: 2rem;
-  border-radius: 50%;
-  color: #2e2e2e;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.task-wrapper .spoon img,
-.task-wrapper .edit img,
-.task-wrapper .delete img {
-  width: 2rem;
-  height: 2rem;
-  align-items: center;
-  justify-content: center;
-  
-}
-
-.task-wrapper .spoon:hover,
-.task-wrapper .edit:hover,
-.task-wrapper .delete:hover {
-  transform: scale(1.4);
-  visibility: visible;
-  opacity: 1;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
 /*ADD TASK*/
 
 .add-task-btn {
@@ -453,47 +306,7 @@ button.add-btn {
   color: #fff
 }
 
-
-.task-info .edit,
-.task-info .delete,
-.additional-info {
-  display: none;
-}
-
-.task:hover .task-info .edit,
-.task:hover .task-info .delete,
-.task:hover .additional-info {
-  display: inline-block;
-}
-
-.edit,
-.delete {
-  width: 20px;
-  height: 20px; 
-  margin-left: 10px; 
-  vertical-align: middle;
-}
-
-.task:hover .edit,
-.task:hover .delete {
-  transform: scale(1.2); 
-}
-
-
-
-
-.book-search-field {
-  border: #666;
-  border-radius: 15%;
-  box-shadow: #2e2e2e;
-}
-
-#booksSearchInput {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc; /* Input border color */
-  border-radius: 5px;
-}
+/* BOOKS*/
 
 button[type="submit"] {
   padding: 10px 15px;
@@ -508,7 +321,6 @@ button[type="submit"] {
 .reading-list {
   margin-top: 50px;
 }
-
 
 
 /* NEW Tasks */
@@ -617,6 +429,71 @@ background: rgba(0, 0, 0, 0.25);
   opacity: 1;
 }
 
+
+
+
+/*CHALLENGES*/
+
 #challenges {
   display: flex;
+}
+
+ul.challenge-tasks {
+  list-style: none;
+  padding: 10px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.task input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #2e2e2e;
+  border-radius: 3px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.task input[type="checkbox"]:checked ~ .checkmark {
+  background-color: #2e2e2e;
+}
+
+.task input[type="checkbox"]:checked ~ .checkmark img {
+  opacity: 1;
+  color: #fff;
+}
+
+.task-text {
+  font-size: 1.2rem;
+  margin: 0;
+  transition: text-decoration 0.3s; 
+}
+
+.task input[type="checkbox"]:checked ~ .task-text {
+  text-decoration: line-through;
+}
+
+.x-details.hidden {
+  display: none;
+  font-size: 1rem;
+  margin: 0;
+  transition: text-decoration 0.3s;
+  padding-left: 20px;
+}
+
+.task:hover .x-details {
+  display: block;
 }
