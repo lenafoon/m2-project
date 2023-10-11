@@ -58,7 +58,7 @@ submitButton.addEventListener('click', function (event) {
 });
 
 
-function addTaskToCategory(category, taskText) {
+function addTaskToCategory(category) {
 
     const newTaskElement = document.createElement('div');
     newTaskElement.classList.add('task-wrapper');
